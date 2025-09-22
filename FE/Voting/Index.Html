@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting & Pemilu - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/officials">Pejabat</a></li>
+                    <li><a href="/news">Berita</a></li>
+                    <li><a href="/elections">Voting</a></li>
+                    <li><a href="/help">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="text" placeholder="Cari..." class="search-input">
+                <button class="btn-login" onclick="location.href='/login'">Login</button>
+                <button class="btn-register" onclick="location.href='/signup'">Daftar</button>
+                <button class="btn-accessibility">A11y</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="voting-page-content">
+        <div class="container">
+            <h1>Voting & Pemilu</h1>
+            <p class="page-description">Ikuti pemilihan umum, lihat informasi kandidat, dan berikan suara Anda untuk masa depan yang lebih baik.</p>
+
+            <div class="election-events-grid">
+                <!-- Election event cards will be loaded here -->
+                <div class="election-card">
+                    <div class="card-header">
+                        <h3>Pemilihan Walikota Bandung 2026</h3>
+                        <span class="status-badge active">Aktif</span>
+                    </div>
+                    <p class="election-date">Periode Voting: 10 Okt - 20 Okt 2026</p>
+                    <p class="election-description">Pilih pemimpin terbaik untuk Kota Bandung. Pelajari visi misi kandidat sebelum memilih.</p>
+                    <div class="candidate-list">
+                        <h4>Kandidat:</h4>
+                        <ul>
+                            <li>Budi Santoso</li>
+                            <li>Dewi Lestari</li>
+                        </ul>
+                    </div>
+                    <a href="/elections/walikota-bandung-2026" class="btn-vote">Lihat Detail & Voting</a>
+                </div>
+
+                <div class="election-card">
+                    <div class="card-header">
+                        <h3>Pemilihan Gubernur Jawa Barat 2027</h3>
+                        <span class="status-badge upcoming">Mendatang</span>
+                    </div>
+                    <p class="election-date">Periode Voting: 01 Jan - 10 Jan 2027</p>
+                    <p class="election-description">Persiapkan diri Anda untuk memilih Gubernur Jawa Barat. Informasi kandidat akan segera tersedia.</p>
+                    <a href="/elections/gubernur-jabar-2027" class="btn-detail">Lihat Detail</a>
+                </div>
+
+                <div class="election-card">
+                    <div class="card-header">
+                        <h3>Pemilihan Presiden 2029</h3>
+                        <span class="status-badge finished">Selesai</span>
+                    </div>
+                    <p class="election-date">Periode Voting: 14 Feb - 24 Feb 2029</p>
+                    <p class="election-description">Hasil pemilihan presiden sebelumnya. Lihat audit dan transparansi hasil.</p>
+                    <a href="/elections/presiden-2029" class="btn-results">Lihat Hasil</a>
+                </div>
+            </div>
+
+            <div class="candidate-nomination-info">
+                <h2>Ingin Mencalonkan Diri?</h2>
+                <p>Jika Anda seorang Pejabat dan ingin mencalonkan diri dalam pemilihan mendatang, silakan ajukan nominasi Anda.</p>
+                <button class="btn-nominate" onclick="location.href='/dashboard/official/nominate'">Ajukan Nominasi</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/help">Bantuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+            <p>&copy; 2025 Suara Rakyat. Dikelola oleh KPU.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

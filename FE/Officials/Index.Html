@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direktori Pejabat - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/officials">Pejabat</a></li>
+                    <li><a href="/news">Berita</a></li>
+                    <li><a href="/elections">Voting</a></li>
+                    <li><a href="/help">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="text" placeholder="Cari..." class="search-input">
+                <button class="btn-login" onclick="location.href='/login'">Login</button>
+                <button class="btn-register" onclick="location.href='/signup'">Daftar</button>
+                <button class="btn-accessibility">A11y</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="officials-page-content">
+        <div class="container">
+            <h1>Direktori Pejabat</h1>
+            <p class="page-description">Temukan dan pantau profil, kinerja, serta proyek-proyek yang telah dilakukan oleh para pejabat publik.</p>
+
+            <div class="officials-filters">
+                <input type="text" placeholder="Cari nama pejabat..." class="filter-search-input">
+                <select class="filter-select">
+                    <option value="">Semua Jabatan</option>
+                    <option value="walikota">Walikota</option>
+                    <option value="bupati">Bupati</option>
+                    <option value="gubernur">Gubernur</option>
+                    <option value="presiden">Presiden</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">Semua Wilayah</option>
+                    <!-- Options will be dynamically loaded -->
+                </select>
+                <button class="btn-filter">Filter</button>
+            </div>
+
+            <div class="officials-list-grid">
+                <!-- Official cards will be loaded here -->
+                <div class="official-card">
+                    <img src="../img/mederkkaa.jpg" alt="Foto Pejabat 1">
+                    <div class="card-content">
+                        <h3>Budi Santoso</h3>
+                        <p class="official-title">Walikota Bandung</p>
+                        <p class="official-stats">Proyek Selesai: 12 | Laporan Ditangani: 85</p>
+                        <a href="/officials/budi-santoso" class="view-profile">Lihat Profil</a>
+                    </div>
+                </div>
+                <div class="official-card">
+                    <img src="../img/mederkkaa.jpg" alt="Foto Pejabat 2">
+                    <div class="card-content">
+                        <h3>Siti Aminah</h3>
+                        <p class="official-title">Gubernur Jawa Barat</p>
+                        <p class="official-stats">Proyek Selesai: 25 | Laporan Ditangani: 150</p>
+                        <a href="/officials/siti-aminah" class="view-profile">Lihat Profil</a>
+                    </div>
+                </div>
+                <div class="official-card">
+                    <img src="../img/mederkkaa.jpg" alt="Foto Pejabat 3">
+                    <div class="card-content">
+                        <h3>Joko Susilo</h3>
+                        <p class="official-title">Bupati Sleman</p>
+                        <p class="official-stats">Proyek Selesai: 8 | Laporan Ditangani: 60</p>
+                        <a href="/officials/joko-susilo" class="view-profile">Lihat Profil</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="btn-page prev">Sebelumnya</button>
+                <span class="page-info">Halaman 1 dari 3</span>
+                <button class="btn-page next">Selanjutnya</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/help">Bantuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+            <p>&copy; 2025 Suara Rakyat. Dikelola oleh KPU.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

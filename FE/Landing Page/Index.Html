@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suara Rakyat - Berpartisipasi untuk Perubahan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="/officials">Pejabat</a></li>
+                    <li><a href="/news">Berita</a></li>
+                    <li><a href="/elections">Voting</a></li>
+                    <li><a href="/help">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="text" placeholder="Cari..." class="search-input">
+                <button class="btn-login" onclick="location.href='/login'">Login</button>
+                <button class="btn-register" onclick="location.href='/signup'">Daftar</button>
+                <button class="btn-accessibility">A11y</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Suara Rakyat: Wujudkan Transparansi & Akuntabilitas</h1>
+            <p>Platform partisipasi publik untuk melaporkan keluh kesah, memantau kinerja pejabat, dan berpartisipasi dalam pemilihan umum.</p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="location.href='/report'">Laporkan Sekarang</button>
+                <button class="btn-secondary" onclick="location.href='/elections'">Lihat Kandidat</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-stats">
+        <div class="container">
+            <div class="stat-card">
+                <h3>Laporan Hari Ini</h3>
+                <p>1,234</p>
+            </div>
+            <div class="stat-card">
+                <h3>Proyek Selesai</h3>
+                <p>567</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pemilu Aktif</h3>
+                <p>3</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-filter">
+        <div class="container">
+            <h2>Cari Berdasarkan Wilayah</h2>
+            <select>
+                <option value="">Pilih Provinsi</option>
+                <!-- Options will be dynamically loaded -->
+            </select>
+            <select>
+                <option value="">Pilih Kabupaten</option>
+                <!-- Options will be dynamically loaded -->
+            </select>
+        </div>
+    </section>
+
+    <section class="featured-news">
+        <div class="container">
+            <h2>Berita & Pengumuman Terbaru</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="../img/mederkkaa.jpg" alt="Berita 1">
+                    <h3>Judul Berita Penting 1</h3>
+                    <p>Ringkasan singkat berita atau pengumuman...</p>
+                    <a href="/news/berita-penting-1">Baca Selengkapnya</a>
+                </div>
+                <div class="news-card">
+                    <img src="../img/mederkkaa.jpg" alt="Berita 2">
+                    <h3>Judul Berita Penting 2</h3>
+                    <p>Ringkasan singkat berita atau pengumuman...</p>
+                    <a href="/news/berita-penting-2">Baca Selengkapnya</a>
+                </div>
+                <div class="news-card">
+                    <img src="../img/mederkkaa.jpg" alt="Berita 3">
+                    <h3>Judul Berita Penting 3</h3>
+                    <p>Ringkasan singkat berita atau pengumuman...</p>
+                    <a href="/news/berita-penting-3">Baca Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/help">Bantuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+            <p>&copy; 2025 Suara Rakyat. Dikelola oleh KPU.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

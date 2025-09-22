@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupa Kata Sandi - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <div class="forgot-password-container">
+        <div class="forgot-password-box">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <h2>Lupa Kata Sandi?</h2>
+            <p>Masukkan email atau nomor HP Anda yang terdaftar untuk menerima kode reset kata sandi.</p>
+            <form id="forgotPasswordForm">
+                <div class="input-group">
+                    <label for="emailPhone">Email / Nomor HP</label>
+                    <input type="text" id="emailPhone" name="emailPhone" required>
+                </div>
+                <button type="submit" class="btn-submit">Kirim Kode Reset</button>
+            </form>
+            <p class="back-to-login">Kembali ke <a href="/login">Login</a></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

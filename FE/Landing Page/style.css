@@ -1,0 +1,375 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333;
+    background-color: #f4f7f6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Header */
+.main-header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header .logo img {
+    height: 40px;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 25px;
+}
+
+.main-nav ul li a {
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    color: #007bff;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.header-actions .search-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.header-actions .btn-login,
+.header-actions .btn-register,
+.header-actions .btn-accessibility {
+    margin-left: 10px;
+    padding: 8px 15px;
+}
+
+.header-actions .btn-login {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.header-actions .btn-login:hover {
+    background-color: #e0e0e0;
+}
+
+.header-actions .btn-register {
+    background-color: #28a745;
+    color: white;
+}
+
+.header-actions .btn-register:hover {
+    background-color: #218838;
+}
+
+.header-actions .btn-accessibility {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.header-actions .btn-accessibility:hover {
+    background-color: #e0a800;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/mederkkaa.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+    border-radius: 0 0 15px 15px;
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-cta .btn-primary,
+.hero-cta .btn-secondary {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    margin: 0 10px;
+}
+
+/* Quick Stats */
+.quick-stats {
+    padding: 40px 0;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.quick-stats .container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.stat-card h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* Map Filter */
+.map-filter {
+    padding: 40px 0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.map-filter h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.map-filter select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 10px;
+    font-size: 16px;
+    min-width: 200px;
+}
+
+/* Featured News */
+.featured-news {
+    padding: 40px 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.featured-news h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.news-card {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card h3 {
+    padding: 15px;
+    margin: 0;
+    color: #007bff;
+}
+
+.news-card p {
+    padding: 0 15px 15px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.news-card a {
+    display: block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.news-card a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #343a40;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    border-top: 5px solid #007bff;
+}
+
+.main-footer .footer-links a {
+    color: white;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.main-footer .footer-links a:hover {
+    color: #007bff;
+}
+
+.main-footer p {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        margin-top: 15px;
+    }
+
+    .main-nav ul li {
+        margin: 5px 0;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .header-actions .search-input,
+    .header-actions button {
+        width: 90%;
+        margin: 5px auto;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+    }
+
+    .hero-cta .btn-primary,
+    .hero-cta .btn-secondary {
+        margin: 10px 0;
+        width: 90%;
+    }
+
+    .quick-stats .container {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .map-filter select {
+        margin: 10px 0;
+        width: 90%;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}

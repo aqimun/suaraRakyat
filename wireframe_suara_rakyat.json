@@ -1,0 +1,104 @@
+{
+  "page": "landing",
+  "sections": [
+    {
+      "id": "hero",
+      "title": "Bagian Utama (Hero Section)",
+      "purpose": "Menarik perhatian pengguna, menyampaikan misi utama, dan mendorong tindakan 'Laporkan Sekarang'.",
+      "components": [
+        {"type": "Header", "props": {"logoText": "Suara Rakyat", "navItems": ["Beranda", "Fitur", "Testimoni", "CS"]}},
+        {"type": "HeroImage", "props": {"src": "../img/mederkkaa.jpg", "alt": "Masyarakat Indonesia dengan bendera merah putih"}},
+        {"type": "Heading", "props": {"level": 1, "text": "Suara Rakyat: Transparansi Pejabat, Keluh Kesah Didengar"}},
+        {"type": "Paragraph", "props": {"text": "Platform terdepan untuk partisipasi aktif dalam memantau kinerja pejabat dan menyampaikan keluh kesah Anda."}},
+        {"type": "Button", "props": {"text": "Laporkan Sekarang", "variant": "primary", "ariaLabel": "Tombol untuk melaporkan keluh kesah atau masalah", "href": "#form-laporan"}}
+      ]
+    },
+    {
+      "id": "fitur-utama",
+      "title": "Fitur Utama",
+      "purpose": "Menjelaskan manfaat utama platform secara singkat dan jelas.",
+      "components": [
+        {"type": "Heading", "props": {"level": 2, "text": "Mengapa Memilih Suara Rakyat?"}},
+        {"type": "FeatureCard", "props": {"icon": "transparency", "title": "Transparansi Pejabat", "description": "Akses data kinerja pejabat publik secara akurat dan transparan."}},
+        {"type": "FeatureCard", "props": {"icon": "participation", "title": "Sampaikan Keluh Kesah", "description": "Berikan suara Anda dengan mudah dan pantau tindak lanjutnya secara real-time."}},
+        {"type": "FeatureCard", "props": {"icon": "information", "title": "Informasi Lengkap", "description": "Dapatkan profil pejabat dan program kerja secara detail."}}
+      ]
+    },
+    {
+      "id": "cara-kerja",
+      "title": "Bagaimana Kami Bekerja?",
+      "purpose": "Menjelaskan alur kerja platform secara sederhana dan mudah dipahami.",
+      "components": [
+        {"type": "Heading", "props": {"level": 2, "text": "Mudah, Cepat, dan Transparan"}},
+        {"type": "StepCard", "props": {"step": 1, "title": "Laporkan", "description": "Sampaikan keluh kesah atau temuan Anda melalui formulir yang mudah diakses."}},
+        {"type": "StepCard", "props": {"step": 2, "title": "Verifikasi", "description": "Tim kami akan memverifikasi laporan Anda untuk memastikan keakuratannya."}},
+        {"type": "StepCard", "props": {"step": 3, "title": "Tindak Lanjut", "description": "Laporan diteruskan ke pihak berwenang untuk ditindaklanjuti dan dipantau."}},
+        {"type": "StepCard", "props": {"step": 4, "title": "Transparansi", "description": "Anda dapat memantau status laporan Anda secara real-time."}}
+      ]
+    },
+    {
+      "id": "testimoni",
+      "title": "Apa Kata Mereka?",
+      "purpose": "Membangun kepercayaan melalui ulasan positif dari pengguna.",
+      "components": [
+        {"type": "Heading", "props": {"level": 2, "text": "Apa Kata Mereka?"}},
+        {"type": "TestimonialCard", "props": {"quote": "Suara Rakyat membuat proses pelaporan menjadi sangat mudah dan transparan. Saya merasa suara saya benar-benar didengar!", "author": "Budi Santoso, Warga Aktif"}},
+        {"type": "TestimonialCard", "props": {"quote": "Informasi pejabat yang lengkap membantu saya memahami kinerja mereka. Sangat direkomendasikan!", "author": "Siti Aminah, Pengamat Publik"}}
+      ]
+    },
+    {
+      "id": "cta-bawah",
+      "title": "Ajakan Bertindak",
+      "purpose": "Mendorong pengguna untuk mengambil tindakan 'Laporkan Sekarang' di akhir halaman.",
+      "components": [
+        {"type": "Heading", "props": {"level": 2, "text": "Siap Membuat Perubahan?"}},
+        {"type": "Paragraph", "props": {"text": "Bergabunglah dengan ribuan warga lainnya yang peduli akan transparansi dan akuntabilitas."}},
+        {"type": "Button", "props": {"text": "Laporkan Sekarang", "variant": "primary", "ariaLabel": "Tombol untuk melaporkan keluh kesah atau masalah", "href": "#form-laporan"}}
+      ]
+    },
+    {
+      "id": "footer",
+      "title": "Footer",
+      "purpose": "Menyediakan informasi hak cipta, tautan penting, dan kontak.",
+      "components": [
+        {"type": "Paragraph", "props": {"text": "&copy; 2023 Suara Rakyat. Hak Cipta Dilindungi."}},
+        {"type": "Link", "props": {"text": "Privasi", "href": "#"}},
+        {"type": "Link", "props": {"text": "Ketentuan", "href": "#"}},
+        {"type": "Link", "props": {"text": "FAQ", "href": "#"}}
+      ]
+    }
+  ],
+  "microcopy": [
+    {"key": "hero_heading", "text": "Suara Rakyat: Transparansi Pejabat, Keluh Kesah Didengar"},
+    {"key": "hero_subheading", "text": "Platform terdepan untuk partisipasi aktif dalam memantau kinerja pejabat dan menyampaikan keluh kesah Anda."},
+    {"key": "hero_cta", "text": "Laporkan Sekarang"},
+    {"key": "features_heading", "text": "Mengapa Memilih Suara Rakyat?"},
+    {"key": "feature_transparency_title", "text": "Transparansi Pejabat"},
+    {"key": "feature_transparency_desc", "text": "Akses data kinerja pejabat publik secara akurat dan transparan."},
+    {"key": "feature_participation_title", "text": "Sampaikan Keluh Kesah"},
+    {"key": "feature_participation_desc", "text": "Berikan suara Anda dengan mudah dan pantau tindak lanjutnya secara real-time."},
+    {"key": "feature_information_title", "text": "Informasi Lengkap"},
+    {"key": "feature_information_desc", "text": "Dapatkan profil pejabat dan program kerja secara detail."},
+    {"key": "how_it_works_heading", "text": "Mudah, Cepat, dan Transparan"},
+    {"key": "step1_title", "text": "Laporkan"},
+    {"key": "step1_desc", "text": "Sampaikan keluh kesah atau temuan Anda melalui formulir yang mudah diakses."},
+    {"key": "step2_title", "text": "Verifikasi"},
+    {"key": "step2_desc", "text": "Tim kami akan memverifikasi laporan Anda untuk memastikan keakuratannya."},
+    {"key": "step3_title", "text": "Tindak Lanjut"},
+    {"key": "step3_desc", "text": "Laporan diteruskan ke pihak berwenang untuk ditindaklanjuti dan dipantau."},
+    {"key": "step4_title", "text": "Transparansi"},
+    {"key": "step4_desc", "text": "Anda dapat memantau status laporan Anda secara real-time."},
+    {"key": "testimonials_heading", "text": "Apa Kata Mereka?"},
+    {"key": "testimonial1_quote", "text": "Suara Rakyat membuat proses pelaporan menjadi sangat mudah dan transparan. Saya merasa suara saya benar-benar didengar!"},
+    {"key": "testimonial1_author", "text": "Budi Santoso, Warga Aktif"},
+    {"key": "testimonial2_quote", "text": "Informasi pejabat yang lengkap membantu saya memahami kinerja mereka. Sangat direkomendasikan!"},
+    {"key": "testimonial2_author", "text": "Siti Aminah, Pengamat Publik"},
+    {"key": "cta_bottom_heading", "text": "Siap Membuat Perubahan?"},
+    {"key": "cta_bottom_subheading", "text": "Bergabunglah dengan ribuan warga lainnya yang peduli akan transparansi dan akuntabilitas."},
+    {"key": "cta_bottom_button", "text": "Laporkan Sekarang"},
+    {"key": "footer_copyright", "text": "&copy; 2023 Suara Rakyat. Hak Cipta Dilindungi."},
+    {"key": "footer_privacy", "text": "Privasi"},
+    {"key": "footer_terms", "text": "Ketentuan"},
+    {"key": "footer_faq", "text": "FAQ"}
+  ]
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-box">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <h2>Daftar Akun Baru</h2>
+            <div class="stepper">
+                <div class="step active" id="step1">1. Kontak</div>
+                <div class="step" id="step2">2. KTP</div>
+                <div class="step" id="step3">3. Selfie</div>
+                <div class="step" id="step4">4. Persetujuan</div>
+            </div>
+            <form id="signupForm">
+                <!-- Step 1: Contact Info -->
+                <div class="form-step active" id="formStep1">
+                    <div class="input-group">
+                        <label for="fullName">Nama Lengkap</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="phone">Nomor HP</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Kata Sandi</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    <button type="button" class="btn-next" data-step="2">Lanjut</button>
+                </div>
+
+                <!-- Step 2: Upload KTP -->
+                <div class="form-step" id="formStep2">
+                    <div class="input-group">
+                        <label for="ktpUpload">Unggah KTP Anda (foto jelas)</label>
+                        <input type="file" id="ktpUpload" name="ktpUpload" accept="image/*" required>
+                        <p class="hint">Ukuran file maksimal 10MB. Pastikan semua sudut KTP terlihat jelas.</p>
+                        <div class="image-preview" id="ktpPreview"></div>
+                    </div>
+                    <button type="button" class="btn-prev" data-step="1">Kembali</button>
+                    <button type="button" class="btn-next" data-step="3">Lanjut</button>
+                </div>
+
+                <!-- Step 3: Selfie + Liveness -->
+                <div class="form-step" id="formStep3">
+                    <div class="input-group">
+                        <label for="selfieUpload">Ambil Foto Selfie Anda</label>
+                        <input type="file" id="selfieUpload" name="selfieUpload" accept="image/*" required>
+                        <p class="hint">Pastikan wajah terlihat jelas dan tidak ada halangan.</p>
+                        <div class="image-preview" id="selfiePreview"></div>
+                        <!-- Placeholder for liveness detection overlay -->
+                        <div class="liveness-overlay"></div>
+                    </div>
+                    <button type="button" class="btn-prev" data-step="2">Kembali</button>
+                    <button type="button" class="btn-next" data-step="4">Lanjut</button>
+                </div>
+
+                <!-- Step 4: Consent -->
+                <div class="form-step" id="formStep4">
+                    <div class="input-group checkbox-group">
+                        <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+                        <label for="privacyConsent">Saya menyetujui <a href="#">Kebijakan Privasi</a> dan <a href="#">Syarat & Ketentuan</a>.</label>
+                    </div>
+                    <div class="input-group checkbox-group">
+                        <input type="checkbox" id="dataConsent" name="dataConsent" required>
+                        <label for="dataConsent">Saya menyetujui penggunaan data pribadi untuk verifikasi KYC.</label>
+                    </div>
+                    <button type="button" class="btn-prev" data-step="3">Kembali</button>
+                    <button type="submit" class="btn-submit">Daftar</button>
+                </div>
+            </form>
+            <p class="login-link">Sudah punya akun? <a href="/login">Masuk</a></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <h2>Masuk ke Akun Anda</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="emailPhone">Email / Nomor HP</label>
+                    <input type="text" id="emailPhone" name="emailPhone" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Kata Sandi</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="options-group">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="rememberMe"> Ingat Saya
+                    </label>
+                    <a href="/forgot-password" class="forgot-password-link">Lupa kata sandi?</a>
+                </div>
+                <button type="submit" class="btn-login-submit">Masuk</button>
+            </form>
+            <div class="social-login-divider">
+                <span>Atau</span>
+            </div>
+            <button class="btn-social-login">Masuk dengan SSO Pemerintah (Opsional)</button>
+            <p class="signup-link">Belum punya akun? <a href="/signup">Daftar Sekarang</a></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pejabat - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/officials">Pejabat</a></li>
+                    <li><a href="/news">Berita</a></li>
+                    <li><a href="/elections">Voting</a></li>
+                    <li><a href="/help">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="text" placeholder="Cari..." class="search-input">
+                <button class="btn-login" onclick="location.href='/login'">Login</button>
+                <button class="btn-register" onclick="location.href='/signup'">Daftar</button>
+                <button class="btn-accessibility">A11y</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="official-profile-content">
+        <div class="container">
+            <div class="profile-header">
+                <img src="../img/mederkkaa.jpg" alt="Foto Pejabat" class="profile-photo">
+                <div class="profile-info">
+                    <h1>Budi Santoso</h1>
+                    <p class="official-title">Walikota Bandung</p>
+                    <p class="public-contact">Email: budi.santoso@bandung.go.id | Telepon: (022) 123456</p>
+                    <button class="btn-clarification">Minta Klarifikasi</button>
+                </div>
+            </div>
+
+            <div class="profile-tabs">
+                <button class="tab-button active" data-tab="visi-misi">Visi & Misi</button>
+                <button class="tab-button" data-tab="projects">Proyek</button>
+                <button class="tab-button" data-tab="complaints">Laporan Masyarakat</button>
+                <button class="tab-button" data-tab="documents">Dokumen</button>
+            </div>
+
+            <div class="tab-content active" id="visi-misi">
+                <h2>Visi</h2>
+                <p>Mewujudkan Bandung sebagai kota yang maju, sejahtera, dan berbudaya dengan partisipasi aktif masyarakat.</p>
+                <h2>Misi</h2>
+                <ul>
+                    <li>Meningkatkan kualitas pelayanan publik yang transparan dan akuntabel.</li>
+                    <li>Mengembangkan ekonomi kreatif dan UMKM untuk kesejahteraan masyarakat.</li>
+                    <li>Membangun infrastruktur yang berkelanjutan dan ramah lingkungan.</li>
+                    <li>Mendorong inovasi dan teknologi dalam tata kelola pemerintahan.</li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="projects">
+                <h2>Proyek-Proyek</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="../img/mederkkaa.jpg" alt="Proyek Revitalisasi Taman Kota">
+                        <h3>Revitalisasi Taman Kota</h3>
+                        <p>Status: Selesai</p>
+                        <p>Anggaran: Rp 5 Miliar</p>
+                        <div class="project-evidence">
+                            <img src="../img/mederkkaa.jpg" alt="Sebelum Proyek" class="before-after-img">
+                            <img src="../img/mederkkaa.jpg" alt="Sesudah Proyek" class="before-after-img">
+                        </div>
+                        <a href="#" class="btn-detail">Lihat Detail</a>
+                    </div>
+                    <div class="project-card">
+                        <img src="../img/mederkkaa.jpg" alt="Proyek Pembangunan Jembatan">
+                        <h3>Pembangunan Jembatan Layang</h3>
+                        <p>Status: Berjalan</p>
+                        <p>Anggaran: Rp 15 Miliar</p>
+                        <div class="project-evidence">
+                            <img src="../img/mederkkaa.jpg" alt="Proses Pembangunan" class="before-after-img">
+                        </div>
+                        <a href="#" class="btn-detail">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="complaints">
+                <h2>Statistik Laporan Masyarakat</h2>
+                <div class="complaint-stats-chart">
+                    <!-- Chart placeholder -->
+                    <img src="https://via.placeholder.com/600x300?text=Grafik+Statistik+Laporan" alt="Grafik Statistik Laporan">
+                </div>
+                <div class="complaint-timeline">
+                    <h3>Timeline Laporan Terbaru</h3>
+                    <div class="timeline-item">
+                        <p class="timeline-date">2025-09-20</p>
+                        <p class="timeline-description">Laporan "Jalan Rusak di Jl. Merdeka" ditangani.</p>
+                        <span class="status-badge resolved">Selesai</span>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">2025-09-18</p>
+                        <p class="timeline-description">Laporan "Sampah Menumpuk di Pasar" sedang diproses.</p>
+                        <span class="status-badge in-progress">Dalam Proses</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="documents">
+                <h2>Dokumen Terkait</h2>
+                <ul>
+                    <li><a href="#">APBD Kota Bandung 2025</a></li>
+                    <li><a href="#">Laporan Akuntabilitas Kinerja Instansi Pemerintah (LAKIP) 2024</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/help">Bantuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+            <p>&copy; 2025 Suara Rakyat. Dikelola oleh KPU.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

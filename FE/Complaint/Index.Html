@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporkan Keluh Kesah - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/officials">Pejabat</a></li>
+                    <li><a href="/news">Berita</a></li>
+                    <li><a href="/elections">Voting</a></li>
+                    <li><a href="/help">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="text" placeholder="Cari..." class="search-input">
+                <button class="btn-login" onclick="location.href='/login'">Login</button>
+                <button class="btn-register" onclick="location.href='/signup'">Daftar</button>
+                <button class="btn-accessibility">A11y</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="complaint-page-content">
+        <div class="container">
+            <h1>Laporkan Keluh Kesah Anda</h1>
+            <p class="page-description">Sampaikan laporan Anda mengenai masalah publik. Laporan Anda akan diproses dan ditindaklanjuti oleh pihak berwenang.</p>
+
+            <div class="complaint-form-box">
+                <div class="stepper">
+                    <div class="step active" id="step1">1. Kategori & Lokasi</div>
+                    <div class="step" id="step2">2. Detail Laporan</div>
+                    <div class="step" id="step3">3. Media & Privasi</div>
+                </div>
+                <form id="complaintForm">
+                    <!-- Step 1: Category & Location -->
+                    <div class="form-step active" id="formStep1">
+                        <div class="input-group">
+                            <label for="category">Pilih Kategori Laporan</label>
+                            <div class="category-icons">
+                                <div class="icon-card" data-category="infrastruktur">
+                                    <img src="https://via.placeholder.com/50?text=Infra" alt="Infrastruktur">
+                                    <span>Infrastruktur</span>
+                                </div>
+                                <div class="icon-card" data-category="lingkungan">
+                                    <img src="https://via.placeholder.com/50?text=Lingk" alt="Lingkungan">
+                                    <span>Lingkungan</span>
+                                </div>
+                                <div class="icon-card" data-category="pelayanan-publik">
+                                    <img src="https://via.placeholder.com/50?text=Pelayanan" alt="Pelayanan Publik">
+                                    <span>Pelayanan Publik</span>
+                                </div>
+                                <div class="icon-card" data-category="lainnya">
+                                    <img src="https://via.placeholder.com/50?text=Lainnya" alt="Lainnya">
+                                    <span>Lainnya</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="category" name="category" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="location">Lokasi Kejadian</label>
+                            <input type="text" id="location" name="location" placeholder="Cari lokasi atau gunakan peta" required>
+                            <div id="map-placeholder" style="height: 200px; background-color: #e0e0e0; margin-top: 10px; display: flex; justify-content: center; align-items: center; color: #6c757d;">
+                                Placeholder Peta
+                            </div>
+                        </div>
+                        <button type="button" class="btn-next" data-step="2">Lanjut</button>
+                    </div>
+
+                    <!-- Step 2: Report Details -->
+                    <div class="form-step" id="formStep2">
+                        <div class="input-group">
+                            <label for="title">Judul Laporan</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="description">Deskripsi Lengkap</label>
+                            <textarea id="description" name="description" rows="8" required></textarea>
+                        </div>
+                        <button type="button" class="btn-prev" data-step="1">Kembali</button>
+                        <button type="button" class="btn-next" data-step="3">Lanjut</button>
+                    </div>
+
+                    <!-- Step 3: Media & Privacy -->
+                    <div class="form-step" id="formStep3">
+                        <div class="input-group">
+                            <label for="mediaUpload">Unggah Foto/Video (Opsional)</label>
+                            <input type="file" id="mediaUpload" name="mediaUpload" accept="image/*,video/*" multiple>
+                            <p class="hint">Ukuran file maksimal 25MB per file.</p>
+                            <div class="media-preview" id="mediaPreview"></div>
+                        </div>
+                        <div class="input-group checkbox-group">
+                            <input type="checkbox" id="privacyFlag" name="privacyFlag">
+                            <label for="privacyFlag">Laporkan secara anonim (data pribadi Anda tidak akan ditampilkan ke publik).</label>
+                        </div>
+                        <button type="button" class="btn-prev" data-step="2">Kembali</button>
+                        <button type="submit" class="btn-submit">Kirim Laporan</button>
+                    </div>
+                </form>
+                <p class="track-report-link">Sudah melaporkan? <a href="/report/track">Lacak Laporan Anda</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/help">Bantuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+            <p>&copy; 2025 Suara Rakyat. Dikelola oleh KPU.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

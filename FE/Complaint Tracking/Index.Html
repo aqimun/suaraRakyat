@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lacak Laporan - Suara Rakyat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../img/Logo Suara Rakyat.png" alt="Logo Suara Rakyat">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/officials">Pejabat</a></li>
+                    <li><a href="/news">Berita</a></li>
+                    <li><a href="/elections">Voting</a></li>
+                    <li><a href="/help">Bantuan</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="text" placeholder="Cari..." class="search-input">
+                <button class="btn-login" onclick="location.href='/login'">Login</button>
+                <button class="btn-register" onclick="location.href='/signup'">Daftar</button>
+                <button class="btn-accessibility">A11y</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="complaint-tracking-content">
+        <div class="container">
+            <h1>Lacak Status Laporan Anda</h1>
+            <p class="page-description">Masukkan ID laporan Anda untuk melihat status dan riwayat penanganan.</p>
+
+            <div class="tracking-box">
+                <form id="trackingForm">
+                    <div class="input-group">
+                        <label for="ticketId">ID Laporan</label>
+                        <input type="text" id="ticketId" name="ticketId" placeholder="Contoh: SR-YYYY-XXXXX" required>
+                    </div>
+                    <button type="submit" class="btn-track">Lacak Laporan</button>
+                </form>
+
+                <div id="trackingResults" class="tracking-results" style="display: none;">
+                    <h2>Detail Laporan <span id="displayTicketId"></span></h2>
+                    <div class="status-indicator">
+                        <div class="status-step active" id="status-submitted">
+                            <div class="circle"></div>
+                            <span>Diajukan</span>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-step" id="status-processing">
+                            <div class="circle"></div>
+                            <span>Diproses</span>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-step" id="status-assigned">
+                            <div class="circle"></div>
+                            <span>Ditugaskan</span>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-step" id="status-resolved">
+                            <div class="circle"></div>
+                            <span>Selesai</span>
+                        </div>
+                    </div>
+
+                    <div class="report-details">
+                        <h3>Informasi Laporan</h3>
+                        <p><strong>Kategori:</strong> <span id="detailCategory"></span></p>
+                        <p><strong>Judul:</strong> <span id="detailTitle"></span></p>
+                        <p><strong>Deskripsi:</strong> <span id="detailDescription"></span></p>
+                        <p><strong>Lokasi:</strong> <span id="detailLocation"></span></p>
+                        <p><strong>Tanggal Diajukan:</strong> <span id="detailDate"></span></p>
+                        <p><strong>Status Saat Ini:</strong> <span id="detailCurrentStatus" class="status-badge"></span></p>
+                    </div>
+
+                    <div class="report-timeline">
+                        <h3>Riwayat Penanganan</h3>
+                        <div id="timelineItems">
+                            <!-- Timeline items will be dynamically loaded here -->
+                            <div class="timeline-item">
+                                <p class="timeline-date">2025-09-22 10:00</p>
+                                <p class="timeline-event">Laporan diajukan.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <p class="timeline-date">2025-09-22 14:30</p>
+                                <p class="timeline-event">Laporan sedang dalam proses verifikasi oleh Staff Admin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-media" style="display: none;">
+                        <h3>Media Terlampir</h3>
+                        <div id="attachedMedia" class="media-grid">
+                            <!-- Attached media will be loaded here -->
+                            <img src="../img/mederkkaa.jpg" alt="Media Laporan 1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/help">Bantuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+            <p>&copy; 2025 Suara Rakyat. Dikelola oleh KPU.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
