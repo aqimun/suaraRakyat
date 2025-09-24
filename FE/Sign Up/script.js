@@ -108,34 +108,72 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Handle form submission
-    signupForm.addEventListener('submit', (e) => {
+    async function uploadFile(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('http://localhost:8081/files/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`File upload failed: ${errorText}`);
+        }
+
+        return response.text();
+    }
+
+    signupForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (validateCurrentStep(4)) { // Validate final step before submission
-            const formData = new FormData(signupForm);
-            const data = Object.fromEntries(formData.entries());
+            try {
+                const ktpFile = document.getElementById('ktpUpload').files[0];
+                const selfieFile = document.getElementById('selfieUpload').files[0];
 
-            console.log('Form Submitted:', data);
-            // In a real application, send data to API
-            // fetch('/auth/register', {
-            //     method: 'POST',
-            //     body: formData // Use formData directly for file uploads
-            // })
-            // .then(response => response.json())
-            // .then(result => {
-            //     if (result.success) {
-            //         alert('Pendaftaran berhasil! KYC Anda sedang diverifikasi.');
-            //         window.location.href = '/login'; // Redirect to login or status page
-            //     } else {
-            //         alert('Pendaftaran gagal: ' + result.message);
-            //     }
-            // })
-            // .catch(error => {
-            //     console.error('Error during registration:', error);
-            //     alert('Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');
-            // });
+                if (!ktpFile || !selfieFile) {
+                    alert('Harap unggah file KTP dan Selfie.');
+                    return;
+                }
 
-            alert('Pendaftaran berhasil (simulasi)! KYC Anda sedang diverifikasi.');
-            window.location.href = '/login'; // Redirect to login page
+                // Upload files and get references
+                const ktpRef = await uploadFile(ktpFile);
+                const selfieRef = await uploadFile(selfieFile);
+
+                const formData = new FormData(signupForm);
+                const data = Object.fromEntries(formData.entries());
+
+                const registerRequest = {
+                    nameDisplay: data.fullName,
+                    email: data.email,
+                    phone: data.phone,
+                    password: data.password,
+                    ktpRef: ktpRef,
+                    selfieRef: selfieRef
+                };
+
+                const registerResponse = await fetch('http://localhost:8081/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(registerRequest)
+                });
+
+                if (!registerResponse.ok) {
+                    const errorText = await registerResponse.text();
+                    throw new Error(errorText);
+                }
+
+                const result = await registerResponse.text();
+                alert('Pendaftaran berhasil! Status KYC Anda: PENDING.');
+                window.location.href = '../Login Page/Index.Html'; // Redirect to login page
+
+            } catch (error) {
+                console.error('Error during registration:', error);
+                alert('Pendaftaran gagal: ' + error.message);
+            }
         } else {
             alert('Harap lengkapi semua bidang yang wajib diisi dan setujui persyaratan.');
         }

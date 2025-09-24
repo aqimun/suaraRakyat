@@ -5,15 +5,20 @@ import com.tejasTanra.suaraRakyat.model.User;
 import com.tejasTanra.suaraRakyat.model.UserStatus;
 import com.tejasTanra.suaraRakyat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
 import com.tejasTanra.suaraRakyat.service.AuditLogService;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -94,5 +99,21 @@ public class UserService {
 
     public void deleteById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Try finding by email first, then by phone
+        User user = userRepository.findByEmail(username)
+                .orElseGet(() -> userRepository.findByPhone(username)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found with email or phone: " + username)));
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                user.getRole().getPermissions().stream()
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList())
+        );
     }
 }

@@ -11,35 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('Login Attempt:', { emailPhone, password, rememberMe });
 
-            // In a real application, you would send this data to your backend API
-            // fetch('/auth/login', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ emailPhone, password, rememberMe }),
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     if (data.success) {
-            //         alert('Login successful!');
-            //         window.location.href = '/dashboard'; // Redirect to user dashboard
-            //     } else {
-            //         alert('Login failed: ' + data.message);
-            //     }
-            // })
-            // .catch(error => {
-            //     console.error('Error during login:', error);
-            //     alert('An error occurred during login. Please try again.');
-            // });
-
-            // For demonstration purposes:
-            if (emailPhone && password) {
-                alert('Login successful (simulated)!');
-                window.location.href = '/'; // Redirect to home or dashboard
-            } else {
-                alert('Please enter both email/phone and password.');
-            }
+            fetch('http://localhost:8080/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ emailPhone, password }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return response.text().then(text => { throw new Error(text) });
+                }
+            })
+            .then(data => {
+                alert('Login successful!');
+                // In a real app, you would store the token from the response (e.g., data.token)
+                window.location.href = '../Landing Page/Index.Html'; // Redirect to landing page
+            })
+            .catch(error => {
+                console.error('Error during login:', error);
+                alert('Login failed: ' + error.message);
+            });
         });
     }
 
