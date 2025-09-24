@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "short_text": "Saya setuju data KTP & selfie saya disimpan untuk verifikasi identitas.",
+  "long_text": "Data KTP dan selfie akan digunakan untuk verifikasi identitas dan kepatuhan administrasi. Data disimpan secara terenkripsi, hanya diakses oleh petugas berwenang, dan diproses sesuai UU PDP. Silakan baca kebijakan privasi untuk detail hak dan mekanisme pengaduan.",
+  "checkboxes": [
+    {
+      "id": "consent_store_verify",
+      "label": "Saya memberi izin penyimpanan dan verifikasi KTP/selfie (wajib)",
+      "required": true,
+      "checked_by_default": false
+    },
+    {
+      "id": "consent_audit_share",
+      "label": "Saya mengizinkan data dipakai untuk tujuan audit/penegakan hukum jika diperlukan (opsional)",
+      "required": false,
+      "checked_by_default": false
+    }
+  ],
+  "retention_policy": "Data KTP disimpan selama 5 tahun sejak terakhir aktif, atau sesuai ketentuan hukum yang berlaku.",
+  "contact_info": {
+    "title": "Hubungi Petugas Pelindung Data (DPO)",
+    "email": "dpo@suararakyat.go.id",
+    "phone": "+62-812-0000-0000",
+    "privacy_policy_link": "/legal/privacy-policy"
+  }
+}

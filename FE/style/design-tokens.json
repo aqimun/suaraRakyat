@@ -1,0 +1,46 @@
+{
+  "colors": {
+    "primary": { "value": "#0b63ff", "description": "Main brand color for CTAs and links" },
+    "primary-600": { "value": "#094fc2", "description": "Darker shade for hover/active states" },
+    "accent": { "value": "#00a99d", "description": "Secondary color for highlights or special sections" },
+    "background": { "value": "#ffffff", "description": "Default page background (light mode)" },
+    "surface": { "value": "#f7fafc", "description": "Slightly off-white for cards and panels (light mode)" },
+    "text": { "value": "#111827", "description": "Primary text color (light mode)" },
+    "muted": { "value": "#6b7280", "description": "Secondary or placeholder text (light mode)" },
+    "success": { "value": "#16a34a", "description": "For success messages and icons" },
+    "warning": { "value": "#f59e0b", "description": "For warnings or pending states" },
+    "danger": { "value": "#ef4444", "description": "For error messages and destructive actions" },
+    "dark": {
+      "background": { "value": "#0b1220", "description": "Default page background (dark mode)" },
+      "surface": { "value": "#0f1724", "description": "Cards and panels (dark mode)" },
+      "text": { "value": "#e6eef8", "description": "Primary text color (dark mode)" },
+      "muted": { "value": "#9aa5b2", "description": "Secondary text (dark mode)" }
+    }
+  },
+  "typography": {
+    "font-family": {
+      "sans": { "value": "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial", "description": "Primary font stack" }
+    },
+    "font-size": {
+      "xxl": { "value": "40px", "description": "For main hero titles" },
+      "xl": { "value": "28px", "description": "For section headings" },
+      "lg": { "value": "20px", "description": "For sub-headings or large text" },
+      "md": { "value": "16px", "description": "Default body text size" },
+      "sm": { "value": "14px", "description": "For captions or smaller text" }
+    }
+  },
+  "spacing": {
+    "1": { "value": "8px" },
+    "2": { "value": "16px" },
+    "3": { "value": "24px" },
+    "4": { "value": "32px" }
+  },
+  "radii": {
+    "sm": { "value": "6px", "description": "For small elements like tags" },
+    "md": { "value": "10px", "description": "Default for buttons and inputs" },
+    "lg": { "value": "16px", "description": "For larger cards or containers" }
+  },
+  "effects": {
+    "focus-ring": { "value": "3px auto rgba(11, 99, 255, 0.2)", "description": "Accessibility focus ring style" }
+  }
+}

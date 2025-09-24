@@ -1,0 +1,46 @@
+{
+  "roles": [
+    {
+      "name": "ROLE_SUPER_ADMIN",
+      "permissions": [
+        "user:create", "user:read", "user:update", "user:delete",
+        "role:assign",
+        "complaint:read", "complaint:update", "complaint:delete", "complaint:assign",
+        "news:create", "news:read", "news:update", "news:delete", "news:publish",
+        "project:create", "project:read", "project:update", "project:delete",
+        "election:create", "election:manage", "election:delete",
+        "audit:read",
+        "system:config"
+      ]
+    },
+    {
+      "name": "ROLE_STAFF",
+      "permissions": [
+        "user:read",
+        "complaint:read", "complaint:update", "complaint:assign",
+        "news:create", "news:read", "news:update",
+        "project:read",
+        "election:read"
+      ]
+    },
+    {
+      "name": "ROLE_PEJABAT",
+      "permissions": [
+        "user:read:self",
+        "complaint:read:assigned", "complaint:update:assigned",
+        "project:create", "project:read:self", "project:update:self",
+        "news:read"
+      ]
+    },
+    {
+      "name": "ROLE_USER_RAKYAT",
+      "permissions": [
+        "user:read:self", "user:update:self",
+        "complaint:create", "complaint:read:self",
+        "news:read",
+        "project:read",
+        "vote:cast"
+      ]
+    }
+  ]
+}

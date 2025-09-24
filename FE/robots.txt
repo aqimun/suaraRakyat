@@ -1,0 +1,27 @@
+# robots.txt for Suara Rakyat
+
+User-agent: *
+# Allow all crawlers to access public-facing pages
+Allow: /
+Allow: /news/
+Allow: /officials/
+Allow: /projects/
+Allow: /voting-info/
+
+# Disallow crawlers from accessing sensitive or private areas
+Disallow: /admin/
+Disallow: /user/
+Disallow: /profile/
+Disallow: /settings/
+Disallow: /kyc/
+Disallow: /report/
+Disallow: /login
+Disallow: /signup
+
+# Disallow crawling of API endpoints
+Disallow: /api/
+Disallow: /auth/
+Disallow: /files/
+
+# Location of the sitemap
+Sitemap: https://suararakyat.example.go.id/sitemap.xml

@@ -1,0 +1,49 @@
+{
+  "cta": {
+    "report_now": "Laporkan Sekarang",
+    "view_candidates": "Lihat Kandidat",
+    "submit": "Kirim",
+    "next": "Lanjutkan",
+    "previous": "Kembali",
+    "confirm_vote": "Konfirmasi Pilihan Saya",
+    "login": "Masuk",
+    "register": "Daftar Akun Baru"
+  },
+  "kyc": {
+    "consent_short": "Dengan mengunggah KTP, Anda setuju data akan diverifikasi dan disimpan terenkripsi.",
+    "consent_long": "Data KTP dan selfie akan dipakai hanya untuk verifikasi identitas sesuai UU PDP. Data disimpan terenkripsi dan hanya dapat diakses oleh petugas berwenang. Anda dapat meminta perbaikan atau penghapusan sesuai hak subjek data.",
+    "upload_ktp_title": "Unggah Foto KTP Anda",
+    "upload_selfie_title": "Ambil Foto Selfie dengan KTP"
+  },
+  "notifications": {
+    "success": {
+      "report_submitted": "Laporan terkirim. ID: SR-2025-XXXXX. Est. tanggapan: 3 hari kerja.",
+      "kyc_submitted": "Verifikasi sedang diproses. Kami akan memberitahu Anda setelah selesai.",
+      "vote_cast": "Suara Anda telah direkam dengan aman."
+    },
+    "error": {
+      "file_size_limit": "Ukuran file terlalu besar. Maks 10 MB.",
+      "generic": "Terjadi kesalahan. Silakan coba lagi atau hubungi bantuan.",
+      "server_unavailable": "Tidak dapat terhubung ke server. Periksa koneksi internet Anda.",
+      "invalid_credentials": "Email atau kata sandi salah."
+    },
+    "confirmation": {
+      "vote_confirm_title": "Anda yakin memilih [Nama]?",
+      "vote_confirm_body": "Suara yang telah dikirim tidak dapat diubah kembali.",
+      "delete_item_title": "Anda yakin ingin menghapus item ini?",
+      "delete_item_body": "Tindakan ini tidak dapat dibatalkan."
+    }
+  },
+  "form_labels": {
+    "full_name": "Nama Lengkap",
+    "email": "Email",
+    "phone_number": "Nomor HP",
+    "password": "Kata Sandi",
+    "confirm_password": "Konfirmasi Kata Sandi"
+  },
+  "empty_states": {
+    "no_reports": "Belum ada laporan yang Anda buat.",
+    "no_officials": "Data pejabat tidak ditemukan untuk wilayah ini.",
+    "no_news": "Belum ada berita yang dipublikasikan."
+  }
+}
