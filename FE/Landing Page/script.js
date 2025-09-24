@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mainNav = document.querySelector('.main-nav');
+
+    hamburgerMenu.addEventListener('click', () => {
+        mainNav.classList.toggle('mobile-open');
+    });
+
     // Handle accessibility toggle
     const accessibilityButton = document.querySelector('.btn-accessibility');
     accessibilityButton.addEventListener('click', () => {

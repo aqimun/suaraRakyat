@@ -157,27 +157,41 @@ body {
 
 /* Responsive Design */
 @media (max-width: 480px) {
+    .login-container {
+        padding: 10px;
+    }
+
     .login-box {
-        padding: 25px;
-        margin: 0 15px;
+        padding: 20px;
+        margin: 0;
     }
 
     .login-box .logo img {
-        height: 50px;
+        height: 40px;
     }
 
     .login-box h2 {
-        font-size: 1.5em;
-        margin-bottom: 20px;
+        font-size: 1.4em;
+        margin-bottom: 25px;
     }
 
-    .input-group input {
+    .input-group input[type="text"],
+    .input-group input[type="password"] {
         padding: 10px;
+    }
+
+    .options-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .forgot-password-link {
+        margin-top: 10px;
     }
 
     .btn-login-submit,
     .btn-social-login {
-        padding: 10px;
+        padding: 12px;
         font-size: 16px;
     }
 }

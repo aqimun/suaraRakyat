@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 alert('Login successful!');
-                // In a real app, you would store the token from the response (e.g., data.token)
+                localStorage.setItem('accessToken', data.accessToken);
                 window.location.href = '../Landing Page/Index.Html'; // Redirect to landing page
             })
             .catch(error => {

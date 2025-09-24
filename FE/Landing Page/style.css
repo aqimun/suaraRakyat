@@ -133,6 +133,27 @@ button {
     background-color: #e0a800;
 }
 
+.hamburger-menu {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger-menu span {
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: all 0.3s linear;
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/mederkkaa.jpg') no-repeat center center/cover;
@@ -311,22 +332,40 @@ button {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .main-nav, .header-actions .search-input, .header-actions .btn-login, .header-actions .btn-register, .header-actions .btn-accessibility {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
     .main-header .container {
-        flex-direction: column;
-        text-align: center;
+        justify-content: space-between;
     }
 
-    .main-nav ul {
+    .main-nav.mobile-open {
+        display: flex;
         flex-direction: column;
-        margin-top: 15px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: white;
+        width: 100%;
+        padding: 20px 0;
+        border-bottom: 1px solid #e0e0e0;
     }
 
-    .main-nav ul li {
-        margin: 5px 0;
+    .main-nav.mobile-open ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-nav.mobile-open ul li {
+        margin: 10px 0;
     }
 
     .header-actions {
-        flex-direction: column;
         width: 100%;
         margin-top: 15px;
     }

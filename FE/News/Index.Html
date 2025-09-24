@@ -101,5 +101,18 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="../src/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const mainNav = document.querySelector('.main-nav');
+
+            if (hamburgerMenu && mainNav) {
+                hamburgerMenu.addEventListener('click', () => {
+                    mainNav.classList.toggle('mobile-open');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

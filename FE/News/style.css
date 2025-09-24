@@ -299,29 +299,16 @@ button {
 /* Responsive Design */
 @media (max-width: 768px) {
     .main-header .container {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
-    .main-nav ul {
-        flex-direction: column;
-        margin-top: 15px;
-    }
-
-    .main-nav ul li {
-        margin: 5px 0;
+    .main-nav {
+        display: none;
     }
 
     .header-actions {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 15px;
-    }
-
-    .header-actions .search-input,
-    .header-actions button {
-        width: 90%;
-        margin: 5px auto;
+        display: none;
     }
 
     .news-page-content h1 {
@@ -348,7 +335,7 @@ button {
 
 @media (max-width: 480px) {
     .news-page-content h1 {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 
     .news-card .card-content {

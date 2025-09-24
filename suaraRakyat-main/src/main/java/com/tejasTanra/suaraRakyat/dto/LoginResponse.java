@@ -1,32 +1,26 @@
 package com.tejasTanra.suaraRakyat.dto;
 
 public class LoginResponse {
-    private String message;
-    private String token; // For future JWT implementation
+    private String accessToken;
+    private String tokenType = "Bearer";
 
-    public LoginResponse(String message) {
-        this.message = message;
+    public LoginResponse(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public LoginResponse(String message, String token) {
-        this.message = message;
-        this.token = token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    // Getters and Setters
-    public String getMessage() {
-        return message;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getTokenType() {
+        return tokenType;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
     }
 }

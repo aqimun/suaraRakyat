@@ -1,5 +1,6 @@
 package com.tejasTanra.suaraRakyat.controller;
 
+import com.tejasTanra.suaraRakyat.config.JwtTokenProvider;
 import com.tejasTanra.suaraRakyat.dto.LoginRequest;
 import com.tejasTanra.suaraRakyat.dto.LoginResponse;
 import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
@@ -29,6 +30,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private JwtTokenProvider tokenProvider;
+
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
         try {
@@ -36,8 +40,8 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(loginRequest.getEmailPhone(), loginRequest.getPassword())
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            // Here you would typically generate a JWT token
-            return ResponseEntity.ok(new LoginResponse("Login successful!"));
+            String jwt = tokenProvider.generateToken(authentication);
+            return ResponseEntity.ok(new LoginResponse(jwt));
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
         }

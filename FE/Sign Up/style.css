@@ -243,51 +243,58 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .signup-container {
+        padding: 10px;
+    }
+
     .signup-box {
-        padding: 25px;
-        margin: 0 15px;
+        padding: 20px;
+        margin: 0;
     }
 
     .signup-box h2 {
-        font-size: 1.8em;
-        margin-bottom: 20px;
+        font-size: 1.6em;
+        margin-bottom: 25px;
     }
 
     .stepper {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .stepper .step {
-        flex-basis: 50%;
-        margin-bottom: 15px;
+        flex-basis: auto;
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: left;
     }
 
     .stepper::before {
-        display: none; /* Hide line on small screens */
+        display: none;
     }
 
     .btn-next,
     .btn-prev,
     .btn-submit {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .signup-box {
-        padding: 20px;
-    }
-
     .signup-box .logo img {
-        height: 50px;
+        height: 40px;
     }
 
     .signup-box h2 {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
 
-    .input-group input {
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="tel"],
+    .input-group input[type="password"],
+    .input-group input[type="file"] {
         padding: 10px;
     }
 }
