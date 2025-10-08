@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
-import com.tejasTanra.suaraRakyat.service.AuditLogService;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -24,16 +24,12 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private AuditLogService auditLogService;
+
 
     public User registerUser(RegisterRequest request) {
-        // Check if email or phone already exists
+        // Check if email already exists
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email already registered.");
-        }
-        if (userRepository.findByPhone(request.getPhone()).isPresent()) {
-            throw new IllegalArgumentException("Phone number already registered.");
         }
 
         Optional<Role> roleOptional = roleService.findByName("ROLE_USER_RAKYAT"); // Default role for new registrations
@@ -42,21 +38,16 @@ public class UserService {
         }
 
         User user = new User();
-        user.setEmail(request.getEmail()); // Hashing of email/phone will be added later
-        user.setPhone(request.getPhone()); // Hashing of email/phone will be added later
-        user.setNameDisplay(request.getNameDisplay());
+        user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword())); // Hash the password
-        user.setEncryptedKtpRef(request.getKtpRef()); // Store reference to encrypted KTP
-        user.setEncryptedSelfieRef(request.getSelfieRef()); // Store reference to encrypted selfie
         user.setRole(roleOptional.get());
         user.setStatus(UserStatus.PENDING); // New users are PENDING until KYC is approved
         User savedUser = userRepository.save(user);
-        auditLogService.log(null, "USER_REGISTER", "User", savedUser.getId(), null, savedUser); // Log registration
         return savedUser;
     }
 
     // This method can be kept for internal use or removed if all user creation goes through registerUser
-    public User createUser(String email, String phone, String nameDisplay, String roleName, String password, String encryptedKtpRef, String encryptedSelfieRef) {
+    public User createUser(String email, String roleName, String password) {
         Optional<Role> roleOptional = roleService.findByName(roleName);
         if (roleOptional.isEmpty()) {
             throw new IllegalArgumentException("Role not found: " + roleName);
@@ -64,19 +55,14 @@ public class UserService {
 
         User user = new User();
         user.setEmail(email);
-        user.setPhone(phone);
-        user.setNameDisplay(nameDisplay);
         user.setPassword(passwordEncoder.encode(password));
-        user.setEncryptedKtpRef(encryptedKtpRef);
-        user.setEncryptedSelfieRef(encryptedSelfieRef);
         user.setRole(roleOptional.get());
         user.setStatus(UserStatus.PENDING);
         User savedUser = userRepository.save(user);
-        auditLogService.log(null, "USER_CREATE_INTERNAL", "User", savedUser.getId(), null, savedUser); // Log internal creation
         return savedUser;
     }
 
-    public Optional<User> findById(Long id) {
+    public Optional<User> findById(UUID id) {
         return userRepository.findById(id);
     }
 
@@ -84,15 +70,11 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public Optional<User> findByPhone(String phone) {
-        return userRepository.findByPhone(phone);
-    }
-
     public User save(User user) {
         return userRepository.save(user);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(UUID id) {
         userRepository.deleteById(id);
     }
 }

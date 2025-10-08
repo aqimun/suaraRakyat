@@ -11,16 +11,11 @@ public class ComplaintRequest {
     @NotBlank
     private String category;
 
-    private String locationGeo; // Optional
-
     @NotBlank
     @Size(min = 10, max = 1000)
     private String description;
 
     private Set<String> mediaRefs; // Optional, references to uploaded media
-
-    @NotNull
-    private Boolean anonFlag; // True if anonymous
 
     // Getters and Setters
     public String getCategory() {
@@ -29,14 +24,6 @@ public class ComplaintRequest {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getLocationGeo() {
-        return locationGeo;
-    }
-
-    public void setLocationGeo(String locationGeo) {
-        this.locationGeo = locationGeo;
     }
 
     public String getDescription() {
@@ -53,13 +40,5 @@ public class ComplaintRequest {
 
     public void setMediaRefs(Set<String> mediaRefs) {
         this.mediaRefs = mediaRefs;
-    }
-
-    public Boolean getAnonFlag() {
-        return anonFlag;
-    }
-
-    public void setAnonFlag(Boolean anonFlag) {
-        this.anonFlag = anonFlag;
     }
 }

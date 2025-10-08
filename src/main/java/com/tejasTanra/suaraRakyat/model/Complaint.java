@@ -4,34 +4,45 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
-@Table(name = "complaints")
+@Table(name = "mst_complain")
 public class Complaint {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "uuid", updatable = false, nullable = false)
+    private UUID uuid;
 
-    @Column(name = "reporter_id", nullable = false)
-    private Long reporterId; // ID of User Rakyat, nullable if anonymous
+    // ✅ Relasi ke user pelapor (Reported_UUID)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reported_uuid", nullable = false)
+    private User reporter;
 
+    // ✅ Relasi ke user petugas (Assigned_to)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assigned_to")
+    private User assignedTo;
+
+    // ✅ Relasi ke alamat (UUID_Address)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uuid_address")
+    private Address address;
 
     @Column(nullable = false)
     private String category;
 
-    @Column(name = "location_geo")
-    private String locationGeo; // e.g., "latitude,longitude" or descriptive text
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "complaint_media_refs",
+            joinColumns = @JoinColumn(name = "complaint_uuid")
+    )
+    @Column(name = "media_ref")
+    private Set<String> mediaRefs = new HashSet<>();
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "complaint_media_refs", joinColumns = @JoinColumn(name = "complaint_id"))
-    @Column(name = "media_ref")
-    private Set<String> mediaRefs = new HashSet<>(); // References to uploaded media evidence
-
-    @Column(name = "assigned_to")
-    private Long assignedTo; // ID of User Penjabat, nullable if not yet assigned
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -43,6 +54,7 @@ public class Complaint {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    // Lifecycle hooks
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -54,38 +66,53 @@ public class Complaint {
         updatedAt = LocalDateTime.now();
     }
 
-    public Complaint() {
-    }
+    // Constructors
+    public Complaint() {}
 
-    public Complaint(Long reporterId, boolean anonFlag, String category, String locationGeo, String description, Set<String> mediaRefs, Long assignedTo, ComplaintStatus status, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.reporterId = reporterId;
-        this.category = category;
-        this.locationGeo = locationGeo;
-        this.description = description;
-        this.mediaRefs = new HashSet<>(mediaRefs); // Ensure deep copy for mutable collections
+    public Complaint(User reporter, User assignedTo, Address address, String category, String description, Set<String> mediaRefs, ComplaintStatus status) {
+        this.reporter = reporter;
         this.assignedTo = assignedTo;
+        this.address = address;
+        this.category = category;
+        this.description = description;
+        this.mediaRefs = new HashSet<>(mediaRefs);
         this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
-    public Long getReporterId() {
-        return reporterId;
+    public User getReporter() {
+        return reporter;
     }
 
-    public void setReporterId(Long reporterId) {
-        this.reporterId = reporterId;
+    public void setReporter(User reporter) {
+        this.reporter = reporter;
     }
 
+    public User getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(User assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public String getCategory() {
         return category;
@@ -93,22 +120,6 @@ public class Complaint {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getLocationGeo() {
-        return locationGeo;
-    }
-
-    public void setLocationGeo(String locationGeo) {
-        this.locationGeo = locationGeo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Set<String> getMediaRefs() {
@@ -119,12 +130,12 @@ public class Complaint {
         this.mediaRefs = mediaRefs;
     }
 
-    public Long getAssignedTo() {
-        return assignedTo;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAssignedTo(Long assignedTo) {
-        this.assignedTo = assignedTo;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public ComplaintStatus getStatus() {

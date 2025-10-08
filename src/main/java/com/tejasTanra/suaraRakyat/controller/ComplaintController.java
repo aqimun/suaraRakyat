@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/complaints")
@@ -25,10 +26,11 @@ public class ComplaintController {
     @PostMapping
     public ResponseEntity<?> submitComplaint(@Valid @RequestBody ComplaintRequest request) {
         // TODO: Get actual reporterId from authenticated user context
-        Long reporterId = 1L; // Placeholder for authenticated user ID
+        UUID reporterUuid = UUID.randomUUID(); // Placeholder for authenticated user ID
+        UUID addressUuid = UUID.randomUUID(); // Placeholder for address ID
 
         try {
-            Complaint newComplaint = complaintService.submitComplaint(reporterId, request.getAnonFlag(), request.getCategory(), request.getLocationGeo(), request.getDescription(), request.getMediaRefs());
+            Complaint newComplaint = complaintService.submitComplaint(reporterUuid, addressUuid, request.getCategory(), request.getDescription(), request.getMediaRefs());
             return new ResponseEntity<>(newComplaint, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -37,12 +39,12 @@ public class ComplaintController {
 
     // Staff Admin moderates a complaint
     @PutMapping("/{id}/moderate")
-    public ResponseEntity<?> moderateComplaint(@PathVariable Long id, @Valid @RequestBody ComplaintModerationRequest request) {
+    public ResponseEntity<?> moderateComplaint(@PathVariable UUID id, @Valid @RequestBody ComplaintModerationRequest request) {
         // TODO: Get actual moderatorId from authenticated user context
-        Long moderatorId = 2L; // Placeholder for Staff Admin ID
+        UUID moderatorUuid = UUID.randomUUID(); // Placeholder for Staff Admin ID
 
         try {
-            Complaint updatedComplaint = complaintService.moderateComplaint(moderatorId, id, request.getNewStatus(), request.getReason());
+            Complaint updatedComplaint = complaintService.moderateComplaint(moderatorUuid, id, request.getNewStatus(), request.getReason());
             return new ResponseEntity<>(updatedComplaint, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -53,12 +55,13 @@ public class ComplaintController {
 
     // Staff Admin assigns a complaint
     @PutMapping("/{id}/assign")
-    public ResponseEntity<?> assignComplaint(@PathVariable Long id, @Valid @RequestBody ComplaintAssignmentRequest request) {
+    public ResponseEntity<?> assignComplaint(@PathVariable UUID id, @Valid @RequestBody ComplaintAssignmentRequest request) {
         // TODO: Get actual staffAdminId from authenticated user context
-        Long staffAdminId = 2L; // Placeholder for Staff Admin ID
+        UUID staffAdminUuid = UUID.randomUUID(); // Placeholder for Staff Admin ID
+        UUID penjabatUuid = request.getPenjabatId(); // Assuming penjabatId is now UUID
 
         try {
-            Complaint updatedComplaint = complaintService.assignComplaint(staffAdminId, id, request.getPenjabatId());
+            Complaint updatedComplaint = complaintService.assignComplaint(staffAdminUuid, id, penjabatUuid);
             return new ResponseEntity<>(updatedComplaint, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -69,12 +72,12 @@ public class ComplaintController {
 
     // User Penjabat marks a complaint as resolved (proposal)
     @PutMapping("/{id}/resolve")
-    public ResponseEntity<?> resolveComplaint(@PathVariable Long id) {
+    public ResponseEntity<?> resolveComplaint(@PathVariable UUID id) {
         // TODO: Get actual penjabatId from authenticated user context
-        Long penjabatId = 3L; // Placeholder for User Penjabat ID
+        UUID penjabatUuid = UUID.randomUUID(); // Placeholder for User Penjabat ID
 
         try {
-            Complaint updatedComplaint = complaintService.resolveComplaintProposal(penjabatId, id);
+            Complaint updatedComplaint = complaintService.resolveComplaintProposal(penjabatUuid, id);
             return new ResponseEntity<>(updatedComplaint, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -87,12 +90,12 @@ public class ComplaintController {
 
     // Staff Admin approves resolution and closes complaint
     @PutMapping("/{id}/close")
-    public ResponseEntity<?> closeComplaint(@PathVariable Long id) {
+    public ResponseEntity<?> closeComplaint(@PathVariable UUID id) {
         // TODO: Get actual staffAdminId from authenticated user context
-        Long staffAdminId = 2L; // Placeholder for Staff Admin ID
+        UUID staffAdminUuid = UUID.randomUUID(); // Placeholder for Staff Admin ID
 
         try {
-            Complaint updatedComplaint = complaintService.closeComplaint(staffAdminId, id);
+            Complaint updatedComplaint = complaintService.closeComplaint(staffAdminUuid, id);
             return new ResponseEntity<>(updatedComplaint, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -105,12 +108,12 @@ public class ComplaintController {
 
     // Super Admin escalates a complaint
     @PutMapping("/{id}/escalate")
-    public ResponseEntity<?> escalateComplaint(@PathVariable Long id, @RequestParam String newLevel) {
+    public ResponseEntity<?> escalateComplaint(@PathVariable UUID id, @RequestParam String newLevel) {
         // TODO: Get actual superAdminId from authenticated user context
-        Long superAdminId = 4L; // Placeholder for Super Admin ID
+        UUID superAdminUuid = UUID.randomUUID(); // Placeholder for Super Admin ID
 
         try {
-            Complaint updatedComplaint = complaintService.escalateComplaint(superAdminId, id, newLevel);
+            Complaint updatedComplaint = complaintService.escalateComplaint(superAdminUuid, id, newLevel);
             return new ResponseEntity<>(updatedComplaint, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -129,7 +132,7 @@ public class ComplaintController {
 
     // Get complaint by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Complaint> getComplaintById(@PathVariable Long id) {
+    public ResponseEntity<Complaint> getComplaintById(@PathVariable UUID id) {
         return complaintService.findById(id)
                 .map(complaint -> new ResponseEntity<>(complaint, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

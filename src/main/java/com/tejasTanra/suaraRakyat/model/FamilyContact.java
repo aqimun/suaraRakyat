@@ -27,16 +27,21 @@ public class FamilyContact {
     @Column(nullable = false, length = 20)
     private String phoneNumber;
 
-    @Column(length = 255)
-    private String address;
+    @Column(nullable = false, unique = true)
+    private String nik;
+
+    @ManyToOne
+    @JoinColumn(name = "uuid_address", referencedColumnName = "id")
+    private Address address;
 
     public FamilyContact() {}
 
-    public FamilyContact(DetailUser detailUser, String fullName, String relationship, String phoneNumber, String address) {
+    public FamilyContact(DetailUser detailUser, String fullName, String relationship, String phoneNumber, String nik, Address address) {
         this.detailUser = detailUser;
         this.fullName = fullName;
         this.relationship = relationship;
         this.phoneNumber = phoneNumber;
+        this.nik = nik;
         this.address = address;
     }
 
@@ -81,11 +86,19 @@ public class FamilyContact {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
+    }
+
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

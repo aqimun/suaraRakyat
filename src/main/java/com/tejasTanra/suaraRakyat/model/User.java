@@ -25,6 +25,10 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserStatus status;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private DetailUser detailUser;
 
@@ -72,6 +76,13 @@ public class User {
     }
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 
     public DetailUser getDetailUser() {

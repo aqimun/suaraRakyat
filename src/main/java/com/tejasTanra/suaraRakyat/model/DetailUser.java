@@ -29,11 +29,6 @@ public class DetailUser {
     @JoinColumn(name = "uuid_mst_user", referencedColumnName = "id")
     private User user;
 
-    // Relasi ke role
-    @ManyToOne
-    @JoinColumn(name = "uuid_mst_role", referencedColumnName = "id")
-    private Role role;
-
     // Relasi ke alamat
     @ManyToOne
     @JoinColumn(name = "uuid_address", referencedColumnName = "id")
@@ -61,9 +56,6 @@ public class DetailUser {
 
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
-
-    public Role getRole() { return role; }
-    public void setRole(Role role) { this.role = role; }
 
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }

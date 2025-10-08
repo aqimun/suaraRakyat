@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class RoleService {
@@ -14,9 +13,8 @@ public class RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public Role createRole(String name, Set<String> permissions) {
+    public Role createRole(String name) {
         Role role = new Role(name);
-        role.setPermissions(permissions);
         return roleRepository.save(role);
     }
 
