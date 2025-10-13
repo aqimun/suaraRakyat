@@ -23,13 +23,20 @@ public class Role {
     @Column(nullable = false, unique = true)
     private String name; // e.g., ROLE_SUPER_ADMIN, ROLE_STAFF_ADMIN, ROLE_USER_PENJABAT, ROLE_USER_RAKYAT
 
-    @OneToMany(mappedBy = "role")
-    private Set<User> users = new HashSet<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "role_permissions", joinColumns = @JoinColumn(name = "role_id"))
+    @Column(name = "permission")
+    private Set<String> permissions = new HashSet<>();
 
     public Role() {}
 
     public Role(String name) {
         this.name = name;
+    }
+
+    public Role(String name, Set<String> permissions) {
+        this.name = name;
+        this.permissions = permissions;
     }
 
     // Getters and Setters
@@ -39,6 +46,6 @@ public class Role {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public Set<User> getUsers() { return users; }
-    public void setUsers(Set<User> users) { this.users = users; }
+    public Set<String> getPermissions() { return permissions; }
+    public void setPermissions(Set<String> permissions) { this.permissions = permissions; }
 }

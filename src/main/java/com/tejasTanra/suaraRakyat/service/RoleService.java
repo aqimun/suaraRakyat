@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Validated
@@ -14,6 +15,11 @@ public class RoleService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    public Role createRole(String name, Set<String> permissions) {
+        Role role = new Role(name, permissions);
+        return roleRepository.save(role);
+    }
 
     public Role createRole(String name) {
         Role role = new Role(name);

@@ -9,8 +9,10 @@ import com.tejasTanra.suaraRakyat.service.ComplaintService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,13 +25,17 @@ public class ComplaintController {
     private ComplaintService complaintService;
 
     // User Rakyat submits a complaint
-    @PostMapping
-    public ResponseEntity<?> submitComplaint(@Valid @RequestBody ComplaintRequest request) {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> submitComplaint(
+            @RequestPart("complaint") @Valid ComplaintRequest request,
+            @RequestPart(value = "media", required = false) MultipartFile[] mediaFiles) {
         // TODO: Get actual reporterId from authenticated user context
         UUID reporterUuid = UUID.randomUUID(); // Placeholder for authenticated user ID
         UUID addressUuid = UUID.randomUUID(); // Placeholder for address ID
 
         try {
+            // You would typically save the mediaFiles to a storage service and get their references (e.g., URLs)
+            // For now, we'll pass the original mediaRefs from the request, and you can extend this to handle actual file uploads.
             Complaint newComplaint = complaintService.submitComplaint(reporterUuid, addressUuid, request.getCategory(), request.getDescription(), request.getMediaRefs());
             return new ResponseEntity<>(newComplaint, HttpStatus.CREATED);
         } catch (Exception e) {
