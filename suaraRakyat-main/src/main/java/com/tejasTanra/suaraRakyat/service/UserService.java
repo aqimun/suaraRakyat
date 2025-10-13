@@ -1,5 +1,7 @@
 package com.tejasTanra.suaraRakyat.service;
 
+import com.tejasTanra.suaraRakyat.exception.BadRequestException; // Import custom exceptions
+import com.tejasTanra.suaraRakyat.exception.ConflictException;
 import com.tejasTanra.suaraRakyat.exception.ResourceNotFoundException;
 import com.tejasTanra.suaraRakyat.model.Role;
 import com.tejasTanra.suaraRakyat.model.User;
@@ -9,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException; // Keep for loadUserByUsername signature
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // Import Transactional
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +22,7 @@ import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
 import com.tejasTanra.suaraRakyat.service.AuditLogService;
 
 @Service
+@Transactional // Apply transactional to all methods in this service by default
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -33,18 +37,19 @@ public class UserService implements UserDetailsService {
     @Autowired
     private AuditLogService auditLogService;
 
+    // @Transactional is applied at class level
     public User registerUser(RegisterRequest request) {
         // Check if email or phone already exists
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("Email already registered.");
+            throw new ConflictException("Email already registered."); // Use ConflictException
         }
         if (userRepository.findByPhone(request.getPhone()).isPresent()) {
-            throw new IllegalArgumentException("Phone number already registered.");
+            throw new ConflictException("Phone number already registered."); // Use ConflictException
         }
 
         Optional<Role> roleOptional = roleService.findByName("ROLE_USER_RAKYAT"); // Default role for new registrations
         if (roleOptional.isEmpty()) {
-            throw new IllegalStateException("Default role ROLE_USER_RAKYAT not found. Please ensure DataLoader runs.");
+            throw new ConflictException("Default role ROLE_USER_RAKYAT not found. Please ensure DataLoader runs."); // Use ConflictException
         }
 
         User user = new User();
@@ -62,10 +67,11 @@ public class UserService implements UserDetailsService {
     }
 
     // This method can be kept for internal use or removed if all user creation goes through registerUser
+    // @Transactional is applied at class level
     public User createUser(String email, String phone, String nameDisplay, String roleName, String password, String encryptedKtpRef, String encryptedSelfieRef) {
         Optional<Role> roleOptional = roleService.findByName(roleName);
         if (roleOptional.isEmpty()) {
-            throw new IllegalArgumentException("Role not found: " + roleName);
+            throw new BadRequestException("Role not found: " + roleName); // Use BadRequestException
         }
 
         User user = new User();
@@ -82,32 +88,38 @@ public class UserService implements UserDetailsService {
         return savedUser;
     }
 
+    @Transactional(readOnly = true) // Read-only method
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + id));
     }
 
+    @Transactional(readOnly = true) // Read-only method
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found with email : " + email));
     }
 
+    @Transactional(readOnly = true) // Read-only method
     public User findByPhone(String phone) {
         return userRepository.findByPhone(phone).orElseThrow(() -> new ResourceNotFoundException("User not found with phone : " + phone));
     }
 
+    // @Transactional is applied at class level
     public User save(User user) {
         return userRepository.save(user);
     }
 
+    // @Transactional is applied at class level
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
+    @Transactional(readOnly = true) // Read-only method
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Try finding by email first, then by phone
         User user = userRepository.findByEmail(username)
                 .orElseGet(() -> userRepository.findByPhone(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("User not found with email or phone: " + username)));
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found with email or phone: " + username))); // Keep UsernameNotFoundException for signature
 
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),

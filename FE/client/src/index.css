@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Accessibility Mode Styles */
+body.accessibility-mode {
+  filter: invert(100%) hue-rotate(180deg);
+  background-color: #333; /* Dark background for inverted colors */
+}
+
+body.accessibility-mode img {
+  filter: invert(100%) hue-rotate(180deg); /* Invert images back */
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Title, Meta } from 'react-head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../App.css';
@@ -7,6 +8,8 @@ import '../App.css';
 const LandingPage = () => {
   return (
     <>
+      <Title>Suara Rakyat - Platform Partisipasi Publik</Title>
+      <Meta name="description" content="Laporkan keluhan, pantau kinerja pejabat, dan berpartisipasi dalam pemilu melalui Suara Rakyat, platform untuk transparansi dan akuntabilitas." />
       <Header />
       <section className="hero">
         <div className="container">

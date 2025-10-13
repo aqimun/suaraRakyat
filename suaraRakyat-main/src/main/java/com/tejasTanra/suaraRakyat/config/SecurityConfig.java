@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity; // Import EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity // Enable method-level security
 public class SecurityConfig {
 
     @Autowired
@@ -40,11 +42,26 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/api/**").permitAll() // Allow /api/** for public access or specific endpoints
-                        .anyRequest().authenticated()
+                        .requestMatchers("/auth/**").permitAll() // Allow /auth/** for public access (login, register)
+                        .requestMatchers("/api/news/published", "/api/officials/**").permitAll() // Publicly accessible news and official profiles
+                        .requestMatchers("/api/**").authenticated() // All other /api/** endpoints require authentication
+                        .anyRequest().authenticated() // Any other request requires authentication
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler));
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
+                .headers(headers -> headers
+                    .httpStrictTransportSecurity(hsts -> hsts
+                        .includeSubDomains(true)
+                        .maxAgeInSeconds(63072000)
+                        .preload(true))
+                    .contentSecurityPolicy(csp -> csp
+                        .policyDirectives("default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'"))
+                    .frameOptions(frameOptions -> frameOptions.deny())
+                    .contentTypeOptions(contentTypeOptions -> contentTypeOptions.disable())
+                    .referrerPolicy(referrer -> referrer.policy(org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter.ReferrerPolicy.NO_REFERRER_WHEN_DOWNGRADE))
+                    .permissionsPolicy(permissions -> permissions
+                        .policy("geolocation=(), microphone=(), camera=()"))
+                );
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

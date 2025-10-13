@@ -1,5 +1,8 @@
 package com.tejasTanra.suaraRakyat.service;
 
+import com.tejasTanra.suaraRakyat.exception.BadRequestException; // Import custom exceptions
+import com.tejasTanra.suaraRakyat.exception.ForbiddenException;
+import com.tejasTanra.suaraRakyat.exception.ResourceNotFoundException;
 import com.tejasTanra.suaraRakyat.model.Candidate;
 import com.tejasTanra.suaraRakyat.model.CandidateStatus;
 import com.tejasTanra.suaraRakyat.model.ElectionEvent;
@@ -9,6 +12,7 @@ import com.tejasTanra.suaraRakyat.repository.ElectionEventRepository;
 import com.tejasTanra.suaraRakyat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // Import Transactional
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -17,6 +21,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Transactional // Apply transactional to all methods in this service by default
 public class VotingService {
 
     @Autowired
@@ -32,6 +37,7 @@ public class VotingService {
     private AuditLogService auditLogService;
 
     // Super Admin creates an election event
+    // @Transactional is applied at class level
     public ElectionEvent createElectionEvent(Long superAdminId, String name, LocalDateTime startTime, LocalDateTime endTime) {
         ElectionEvent event = new ElectionEvent();
         event.setName(name);
@@ -44,18 +50,19 @@ public class VotingService {
     }
 
     // User Penjabat nominates self as a candidate
+    // @Transactional is applied at class level
     public Candidate nominateCandidate(Long pejabatId, Long electionEventId, String vision, String mission) {
         Optional<User> optionalUser = userRepository.findById(pejabatId);
         if (optionalUser.isEmpty() || !optionalUser.get().getRole().getName().equals("ROLE_USER_PENJABAT")) {
-            throw new SecurityException("Only User Penjabat can nominate themselves.");
+            throw new ForbiddenException("Only User Penjabat can nominate themselves."); // Use ForbiddenException
         }
 
         Optional<ElectionEvent> optionalEvent = electionEventRepository.findById(electionEventId);
         if (optionalEvent.isEmpty()) {
-            throw new IllegalArgumentException("Election event not found.");
+            throw new ResourceNotFoundException("Election event not found."); // Use ResourceNotFoundException
         }
         if (candidateRepository.findByPejabatIdAndElectionEventId(pejabatId, electionEventId).isPresent()) {
-            throw new IllegalArgumentException("User already nominated for this election.");
+            throw new BadRequestException("User already nominated for this election."); // Use BadRequestException
         }
 
         Candidate candidate = new Candidate();
@@ -68,6 +75,7 @@ public class VotingService {
 
         // Add candidate to election event's candidate list
         ElectionEvent event = optionalEvent.get();
+        // Using Lombok's @Builder or @Value would simplify this copy
         ElectionEvent oldEventState = new ElectionEvent(event.getName(), event.getStartTime(), event.getEndTime(), event.getCandidateIds(), event.getVoterRollHash(), event.getBallotEncrypted(), event.getReceiptHash(), event.getTallyProof(), event.isActive(), event.getCreatedAt(), event.getUpdatedAt());
         event.getCandidateIds().add(savedCandidate.getId());
         electionEventRepository.save(event); // Update event with new candidate
@@ -78,13 +86,15 @@ public class VotingService {
     }
 
     // Staff Admin verifies a candidate
+    // @Transactional is applied at class level
     public Candidate verifyCandidate(Long staffAdminId, Long candidateId, CandidateStatus newStatus) {
         Optional<Candidate> optionalCandidate = candidateRepository.findById(candidateId);
         if (optionalCandidate.isEmpty()) {
-            throw new IllegalArgumentException("Candidate not found.");
+            throw new ResourceNotFoundException("Candidate not found."); // Use ResourceNotFoundException
         }
 
         Candidate candidate = optionalCandidate.get();
+        // Using Lombok's @Builder or @Value would simplify this copy
         Candidate oldCandidateState = new Candidate(candidate.getPejabatId(), candidate.getElectionEventId(), candidate.getVision(), candidate.getMission(), candidate.getStatus(), candidate.getCreatedAt(), candidate.getUpdatedAt());
 
         candidate.setStatus(newStatus); // VERIFIED or REJECTED
@@ -96,20 +106,21 @@ public class VotingService {
     }
 
     // User Rakyat casts a vote (simplified for pilot)
+    // @Transactional is applied at class level
     public void castVote(Long userId, Long electionEventId, Long candidateId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isEmpty() || !optionalUser.get().getRole().getName().equals("ROLE_USER_RAKYAT")) {
-            throw new SecurityException("Only User Rakyat can cast votes.");
+            throw new ForbiddenException("Only User Rakyat can cast votes."); // Use ForbiddenException
         }
 
         Optional<ElectionEvent> optionalEvent = electionEventRepository.findById(electionEventId);
         if (optionalEvent.isEmpty() || !optionalEvent.get().isActive() || LocalDateTime.now().isBefore(optionalEvent.get().getStartTime()) || LocalDateTime.now().isAfter(optionalEvent.get().getEndTime())) {
-            throw new IllegalArgumentException("Election event not found or not active for voting.");
+            throw new BadRequestException("Election event not found or not active for voting."); // Use BadRequestException
         }
 
         Optional<Candidate> optionalCandidate = candidateRepository.findById(candidateId);
         if (optionalCandidate.isEmpty() || !optionalCandidate.get().getElectionEventId().equals(electionEventId) || optionalCandidate.get().getStatus() != CandidateStatus.VERIFIED) {
-            throw new IllegalArgumentException("Invalid candidate for this election.");
+            throw new BadRequestException("Invalid candidate for this election."); // Use BadRequestException
         }
 
         // TODO: Implement actual E2E verifiable voting protocol (Helios-style)
@@ -119,24 +130,28 @@ public class VotingService {
     }
 
     // Super Admin / Staff Admin views results (simplified)
+    @Transactional(readOnly = true) // Read-only method
     public List<Candidate> getElectionResults(Long electionEventId) {
         Optional<ElectionEvent> optionalEvent = electionEventRepository.findById(electionEventId);
         if (optionalEvent.isEmpty()) {
-            throw new IllegalArgumentException("Election event not found.");
+            throw new ResourceNotFoundException("Election event not found."); // Use ResourceNotFoundException
         }
         // TODO: Implement actual tallying and verification based on cryptographic proofs
         // For pilot, just return verified candidates
         return candidateRepository.findByElectionEventId(electionEventId);
     }
 
+    @Transactional(readOnly = true) // Read-only method
     public Optional<ElectionEvent> findElectionEventById(Long id) {
         return electionEventRepository.findById(id);
     }
 
+    @Transactional(readOnly = true) // Read-only method
     public List<ElectionEvent> findAllActiveElectionEvents() {
         return electionEventRepository.findByIsActiveTrueAndStartTimeBeforeAndEndTimeAfter(LocalDateTime.now(), LocalDateTime.now());
     }
 
+    @Transactional(readOnly = true) // Read-only method
     public List<Candidate> findCandidatesByElectionEvent(Long electionEventId) {
         return candidateRepository.findByElectionEventId(electionEventId);
     }

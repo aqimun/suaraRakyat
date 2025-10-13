@@ -10,7 +10,7 @@ const Footer = () => {
           <Link to="/privacy">Kebijakan Privasi</Link>
           <Link to="/terms">Syarat & Ketentuan</Link>
         </div>
-        <p>&copy; 2025 Suara Rakyat. Dikelola oleh KPU.</p>
+        <p>&copy; {new Date().getFullYear()} Suara Rakyat. Dikelola oleh KPU.</p>
       </div>
     </footer>
   );
