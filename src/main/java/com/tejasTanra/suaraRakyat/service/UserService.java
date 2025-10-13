@@ -6,13 +6,19 @@ import com.tejasTanra.suaraRakyat.model.UserStatus;
 import com.tejasTanra.suaraRakyat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
 
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
 import java.util.UUID;
 
 @Service
+@Validated
 public class UserService {
 
     @Autowired
@@ -23,6 +29,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private Validator validator;
 
 
 
@@ -42,6 +51,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword())); // Hash the password
         user.setRole(roleOptional.get());
         user.setStatus(UserStatus.PENDING); // New users are PENDING until KYC is approved
+
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
+        }
+
         User savedUser = userRepository.save(user);
         return savedUser;
     }
@@ -58,6 +73,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole(roleOptional.get());
         user.setStatus(UserStatus.PENDING);
+
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
+        }
+
         User savedUser = userRepository.save(user);
         return savedUser;
     }
@@ -72,6 +93,10 @@ public class UserService {
 
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    public java.util.List<User> findAll() {
+        return userRepository.findAll();
     }
 
     public void deleteById(UUID id) {

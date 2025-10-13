@@ -1,6 +1,8 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -14,25 +16,31 @@ public class Address {
     @Column(name = "id", columnDefinition = "uniqueidentifier", updatable = false, nullable = false)
     private UUID id;
 
+    @NotBlank(message = "Address cannot be blank")
     @Column(nullable = false)
     private String address;
 
+    @NotNull(message = "Province cannot be null")
     @ManyToOne
     @JoinColumn(name = "uuid_province", referencedColumnName = "id", nullable = false)
     private MstProvince province;
 
+    @NotNull(message = "City/Regency cannot be null")
     @ManyToOne
     @JoinColumn(name = "uuid_city_regency", referencedColumnName = "id", nullable = false)
     private MstCityRegency cityRegency;
 
+    @NotNull(message = "Subdistrict cannot be null")
     @ManyToOne
     @JoinColumn(name = "uuid_subdistrict", referencedColumnName = "id", nullable = false)
     private MstSubdistrict subdistrict;
 
+    @NotNull(message = "Village cannot be null")
     @ManyToOne
     @JoinColumn(name = "uuid_village", referencedColumnName = "id", nullable = false)
     private MstVillage village;
 
+    @NotNull(message = "Postal code cannot be null")
     @ManyToOne
     @JoinColumn(name = "uuid_postal_code", referencedColumnName = "id", nullable = false)
     private MstPostalCode postalCode;

@@ -1,6 +1,9 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +19,7 @@ public class Complaint {
     private UUID uuid;
 
     // ✅ Relasi ke user pelapor (Reported_UUID)
+    @NotNull(message = "Reporter cannot be null")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reported_uuid", nullable = false)
     private User reporter;
@@ -30,6 +34,8 @@ public class Complaint {
     @JoinColumn(name = "uuid_address")
     private Address address;
 
+    @NotBlank(message = "Category cannot be blank")
+    @Size(max = 100, message = "Category cannot exceed 100 characters")
     @Column(nullable = false)
     private String category;
 
@@ -41,9 +47,12 @@ public class Complaint {
     @Column(name = "media_ref")
     private Set<String> mediaRefs = new HashSet<>();
 
+    @NotBlank(message = "Description cannot be blank")
+    @Size(max = 1000, message = "Description cannot exceed 1000 characters")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @NotNull(message = "Status cannot be null")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ComplaintStatus status; // PENDING, IN_REVIEW, ASSIGNED, RESOLVED, CLOSED, REJECTED

@@ -1,6 +1,9 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -14,9 +17,12 @@ public class MstSubdistrict {
     @Column(name = "id", columnDefinition = "uniqueidentifier", updatable = false, nullable = false)
     private UUID id;
 
+    @NotBlank(message = "Subdistrict name cannot be blank")
+    @Size(max = 100, message = "Subdistrict name cannot exceed 100 characters")
     @Column(nullable = false, length = 100)
     private String name;
 
+    @NotNull(message = "City/Regency cannot be null")
     @ManyToOne
     @JoinColumn(name = "uuid_city_regency", referencedColumnName = "id", nullable = false)
     private MstCityRegency cityRegency;

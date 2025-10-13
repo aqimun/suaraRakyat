@@ -9,6 +9,7 @@ import com.tejasTanra.suaraRakyat.repository.UserRepository;
 import com.tejasTanra.suaraRakyat.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
+@Validated
 public class ComplaintService {
 
     @Autowired

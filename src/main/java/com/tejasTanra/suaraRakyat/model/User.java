@@ -1,6 +1,9 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -15,9 +18,13 @@ public class User {
     @Column(name = "id", columnDefinition = "uniqueidentifier", updatable = false, nullable = false)
     private UUID id;
 
+    @Email(message = "Email should be valid")
+    @NotNull(message = "Email cannot be null")
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotNull(message = "Password cannot be null")
+    @Size(min = 6, message = "Password must be at least 6 characters long")
     @Column(nullable = false)
     private String password;
 

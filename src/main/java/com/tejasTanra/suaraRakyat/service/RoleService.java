@@ -4,10 +4,12 @@ import com.tejasTanra.suaraRakyat.model.Role;
 import com.tejasTanra.suaraRakyat.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
 @Service
+@Validated
 public class RoleService {
 
     @Autowired

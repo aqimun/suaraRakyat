@@ -1,6 +1,10 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -15,12 +19,17 @@ public class DetailUser {
     @Column(name = "id", columnDefinition = "uniqueidentifier", updatable = false, nullable = false)
     private UUID id;
 
+    @NotBlank(message = "Full name cannot be blank")
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
+    @NotBlank(message = "Phone number cannot be blank")
+    @Pattern(regexp = "^[0-9]{10,15}$", message = "Phone number must be 10-15 digits")
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 
+    @NotBlank(message = "NIK cannot be blank")
+    @Size(min = 16, max = 16, message = "NIK must be 16 characters long")
     @Column(name = "nik", nullable = false, unique = true)
     private String nik;
 

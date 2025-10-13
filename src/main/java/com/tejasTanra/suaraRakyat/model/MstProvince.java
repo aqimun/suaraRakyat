@@ -1,6 +1,8 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -14,6 +16,8 @@ public class MstProvince {
     @Column(name = "id", columnDefinition = "uniqueidentifier", updatable = false, nullable = false)
     private UUID id;
 
+    @NotBlank(message = "Province name cannot be blank")
+    @Size(max = 100, message = "Province name cannot exceed 100 characters")
     @Column(nullable = false, length = 100)
     private String name;
 

@@ -1,6 +1,8 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.HashSet;
@@ -16,6 +18,8 @@ public class Role {
     @Column(name = "id", columnDefinition = "uniqueidentifier", updatable = false, nullable = false)
     private UUID id;
 
+    @NotBlank(message = "Role name cannot be blank")
+    @Size(max = 50, message = "Role name cannot exceed 50 characters")
     @Column(nullable = false, unique = true)
     private String name; // e.g., ROLE_SUPER_ADMIN, ROLE_STAFF_ADMIN, ROLE_USER_PENJABAT, ROLE_USER_RAKYAT
 
