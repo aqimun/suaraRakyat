@@ -1,5 +1,6 @@
 package com.tejasTanra.suaraRakyat.service;
 
+import com.tejasTanra.suaraRakyat.exception.ResourceNotFoundException;
 import com.tejasTanra.suaraRakyat.model.Role;
 import com.tejasTanra.suaraRakyat.model.User;
 import com.tejasTanra.suaraRakyat.model.UserStatus;
@@ -81,16 +82,16 @@ public class UserService implements UserDetailsService {
         return savedUser;
     }
 
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + id));
     }
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found with email : " + email));
     }
 
-    public Optional<User> findByPhone(String phone) {
-        return userRepository.findByPhone(phone);
+    public User findByPhone(String phone) {
+        return userRepository.findByPhone(phone).orElseThrow(() -> new ResourceNotFoundException("User not found with phone : " + phone));
     }
 
     public User save(User user) {

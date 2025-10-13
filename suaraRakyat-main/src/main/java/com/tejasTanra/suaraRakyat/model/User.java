@@ -1,6 +1,9 @@
 package com.tejasTanra.suaraRakyat.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,12 +18,19 @@ public class User {
     private Role role;
 
     @Column(nullable = false)
+    @NotBlank
+    @Size(max = 100)
     private String password; // Hashed password
 
     @Column(nullable = false, unique = true)
+    @NotBlank
+    @Email
+    @Size(max = 100)
     private String email; // Stored as hashed_idx as per spec, actual hashing logic in service layer
 
     @Column(nullable = false, unique = true)
+    @NotBlank
+    @Size(max = 15)
     private String phone; // Stored as hashed_idx as per spec, actual hashing logic in service layer
 
     @Column(name = "encrypted_ktp_ref")
@@ -30,6 +40,8 @@ public class User {
     private String encryptedSelfieRef; // Reference to encrypted selfie data
 
     @Column(name = "name_display", nullable = false)
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String nameDisplay;
 
     @Enumerated(EnumType.STRING)
