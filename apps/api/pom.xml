@@ -5,26 +5,33 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.5</version>
+		<version>3.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tejasTanra</groupId>
 	<artifactId>suaraRakyat</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>suaraRakyat</name>
-	<description>Demo project for Spring Boot</description>
-	<url/>
+	<description>A platform for public complaints, news, and voting.</description>
+	<url>https://github.com/aqimun/suaraRakyat</url>
 	<licenses>
-		<license/>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+		</license>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<name>Tejas Tanra</name>
+			<email>tejastanra@example.com</email>
+			<organization>Suara Rakyat Team</organization>
+			<organizationUrl>https://github.com/aqimun/suaraRakyat</organizationUrl>
+		</developer>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection>scm:git:git://github.com/aqimun/suaraRakyat.git</connection>
+		<developerConnection>scm:git:ssh://github.com:aqimun/suaraRakyat.git</developerConnection>
+		<url>https://github.com/aqimun/suaraRakyat</url>
 	</scm>
 	<properties>
 		<java.version>17</java.version>
@@ -52,11 +59,6 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
