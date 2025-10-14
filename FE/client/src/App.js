@@ -6,18 +6,18 @@ import './App.css';
 
 // Lazy load page components
 const LandingPage = lazy(() => import('./pages/LandingPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const SignUpPage = lazy(() => import('./pages/SignUpPage'));
-const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
-const NewsPage = lazy(() => import('./pages/NewsPage'));
-const OfficialsPage = lazy(() => import('./pages/OfficialsPage'));
-const OfficialProfilePage = lazy(() => import('./pages/OfficialProfilePage'));
-const VotingPage = lazy(() => import('./pages/VotingPage'));
-const ComplaintPage = lazy(() => import('./pages/ComplaintPage'));
-const ComplaintTrackingPage = lazy(() => import('./pages/ComplaintTrackingPage'));
-const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
-const TermsAndConditionsPage = lazy(() => import('./pages/TermsAndConditionsPage'));
-const ProjectPage = lazy(() => import('./pages/ProjectPage'));
+const LoginPage = lazy(() => import('./features/auth/LoginPage'));
+const SignUpPage = lazy(() => import('./features/auth/SignUpPage'));
+const ForgotPasswordPage = lazy(() => import('./features/auth/ForgotPasswordPage'));
+const NewsPage = lazy(() => import('./features/news/NewsPage'));
+const OfficialsPage = lazy(() => import('./features/officials/OfficialsPage'));
+const OfficialProfilePage = lazy(() => import('./features/officials/OfficialProfilePage'));
+const VotingPage = lazy(() => import('./features/voting/VotingPage'));
+const ComplaintPage = lazy(() => import('./features/complaints/ComplaintPage'));
+const ComplaintTrackingPage = lazy(() => import('./features/complaints/ComplaintTrackingPage'));
+const PrivacyPolicyPage = lazy(() => import('./features/legal/PrivacyPolicyPage'));
+const TermsAndConditionsPage = lazy(() => import('./features/legal/TermsAndConditionsPage'));
+const ProjectPage = lazy(() => import('./features/projects/ProjectPage'));
 
 function App() {
   return (
