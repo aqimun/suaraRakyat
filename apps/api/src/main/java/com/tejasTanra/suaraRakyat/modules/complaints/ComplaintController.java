@@ -1,4 +1,4 @@
-package com.tejasTanra.suaraRakyat.controller;
+package com.tejasTanra.suaraRakyat.modules.complaints;
 
 import com.tejasTanra.suaraRakyat.dto.ComplaintAssignmentRequest;
 import com.tejasTanra.suaraRakyat.dto.ComplaintModerationRequest;

@@ -1,4 +1,4 @@
-package com.tejasTanra.suaraRakyat.service;
+package com.tejasTanra.suaraRakyat.modules.users;
 
 import com.tejasTanra.suaraRakyat.exception.BadRequestException; // Import custom exceptions
 import com.tejasTanra.suaraRakyat.exception.ConflictException;
@@ -7,6 +7,8 @@ import com.tejasTanra.suaraRakyat.model.Role;
 import com.tejasTanra.suaraRakyat.model.User;
 import com.tejasTanra.suaraRakyat.model.UserStatus;
 import com.tejasTanra.suaraRakyat.repository.UserRepository;
+import com.tejasTanra.suaraRakyat.service.AuditLogService; // Keep this import for now, will move AuditLogService later
+import com.tejasTanra.suaraRakyat.service.RoleService; // Keep this import for now, will move RoleService later
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +21,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
-import com.tejasTanra.suaraRakyat.service.AuditLogService;
 
 @Service
 @Transactional // Apply transactional to all methods in this service by default

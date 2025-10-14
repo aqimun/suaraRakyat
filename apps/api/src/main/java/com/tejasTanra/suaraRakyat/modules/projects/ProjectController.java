@@ -1,4 +1,4 @@
-package com.tejasTanra.suaraRakyat.controller;
+package com.tejasTanra.suaraRakyat.modules.projects;
 
 import com.tejasTanra.suaraRakyat.dto.ProjectRequest;
 import com.tejasTanra.suaraRakyat.dto.ProjectStatusUpdateRequest;
@@ -8,8 +8,8 @@ import com.tejasTanra.suaraRakyat.exception.ResourceNotFoundException; // Alread
 import com.tejasTanra.suaraRakyat.model.Project;
 import com.tejasTanra.suaraRakyat.model.ProjectStatus;
 import com.tejasTanra.suaraRakyat.model.User; // Import User model
-import com.tejasTanra.suaraRakyat.service.ProjectService;
-import com.tejasTanra.suaraRakyat.service.UserService; // Import UserService
+import com.tejasTanra.suaraRakyat.modules.projects.ProjectService;
+import com.tejasTanra.suaraRakyat.modules.users.UserService; // Import UserService
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

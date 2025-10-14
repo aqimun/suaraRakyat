@@ -1,8 +1,9 @@
-package com.tejasTanra.suaraRakyat.service;
+package com.tejasTanra.suaraRakyat.modules.projects;
 
 import com.tejasTanra.suaraRakyat.model.Project;
 import com.tejasTanra.suaraRakyat.model.ProjectStatus;
 import com.tejasTanra.suaraRakyat.repository.ProjectRepository;
+import com.tejasTanra.suaraRakyat.service.AuditLogService; // Keep this import for now, will move AuditLogService later
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional; // Import Transactional

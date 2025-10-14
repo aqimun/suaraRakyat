@@ -1,4 +1,4 @@
-package com.tejasTanra.suaraRakyat.service;
+package com.tejasTanra.suaraRakyat.modules.news;
 
 import com.tejasTanra.suaraRakyat.model.News;
 import com.tejasTanra.suaraRakyat.repository.NewsRepository;

@@ -1,12 +1,12 @@
-package com.tejasTanra.suaraRakyat.controller;
+package com.tejasTanra.suaraRakyat.modules.news;
 
 import com.tejasTanra.suaraRakyat.dto.NewsRequest;
 import com.tejasTanra.suaraRakyat.exception.BadRequestException; // Import custom exceptions
 import com.tejasTanra.suaraRakyat.exception.ResourceNotFoundException; // Already exists
 import com.tejasTanra.suaraRakyat.model.News;
 import com.tejasTanra.suaraRakyat.model.User; // Import User model
-import com.tejasTanra.suaraRakyat.service.NewsService;
-import com.tejasTanra.suaraRakyat.service.UserService; // Import UserService
+import com.tejasTanra.suaraRakyat.modules.news.NewsService;
+import com.tejasTanra.suaraRakyat.modules.users.UserService; // Import UserService
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.tejasTanra.suaraRakyat.controller;
+package com.tejasTanra.suaraRakyat.modules.auth;
 
 import com.tejasTanra.suaraRakyat.config.JwtTokenProvider;
 import com.tejasTanra.suaraRakyat.dto.LoginRequest;
