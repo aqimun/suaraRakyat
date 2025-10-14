@@ -5,19 +5,19 @@ on:
     branches:
       - main
     paths:
-      - 'suaraRakyat-main/**'
+      - 'apps/api/**'
   pull_request:
     branches:
       - main
     paths:
-      - 'suaraRakyat-main/**'
+      - 'apps/api/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./suaraRakyat-main
+        working-directory: ./apps/api
 
     steps:
     - name: Checkout code
