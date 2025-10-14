@@ -12,9 +12,9 @@ import './styles/officials.css';
 import './styles/sign-up.css';
 import './styles/voting.css';
 import './styles/style.css';
-import App from './App.js'; // Changed to .js as the original App.js is copied
-import { AuthProvider } from './context/AuthContext.js';
-import { ProjectProvider } from './context/ProjectContext.js';
+import App from './App.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
+import { ProjectProvider } from './context/ProjectContext.jsx';
 import { HeadProvider } from 'react-head';
 import reportWebVitals from './reportWebVitals.js';
 
