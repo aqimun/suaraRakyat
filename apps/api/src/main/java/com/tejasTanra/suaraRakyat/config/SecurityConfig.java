@@ -1,6 +1,6 @@
 package com.tejasTanra.suaraRakyat.config;
 
-import com.tejasTanra.suaraRakyat.service.UserService;
+import com.tejasTanra.suaraRakyat.modules.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

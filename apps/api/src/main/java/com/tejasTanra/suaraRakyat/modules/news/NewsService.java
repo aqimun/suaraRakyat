@@ -2,6 +2,7 @@ package com.tejasTanra.suaraRakyat.modules.news;
 
 import com.tejasTanra.suaraRakyat.model.News;
 import com.tejasTanra.suaraRakyat.repository.NewsRepository;
+import com.tejasTanra.suaraRakyat.service.AuditLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional; // Import Transactional
@@ -67,7 +68,7 @@ public class NewsService {
 
         News existingNews = optionalNews.get();
         // Using Lombok's @Builder or @Value would simplify this copy
-        News oldNewsState = new News(existingNews.getAuthorId(), existingNews.getTitle(), existingNews.getBody(), existingNews.getMediaRefs(), existingNews.getPublishedAt(), existingNews.isDeleted(), existingNews.getCreatedAt(), existingNews.getUpdatedAt());
+        News oldNewsState = new News(existingNews.getAuthorId(), existingNews.getTitle(), existingNews.getBody(), existingNews.getMediaRefs(), existingNews.getVersion(), existingNews.getPublishedAt(), existingNews.isDeleted(), existingNews.getCreatedAt(), existingNews.getUpdatedAt());
 
         existingNews.setPublishedAt(LocalDateTime.now());
         existingNews.setUpdatedAt(LocalDateTime.now());
@@ -86,7 +87,7 @@ public class NewsService {
 
         News existingNews = optionalNews.get();
         // Using Lombok's @Builder or @Value would simplify this copy
-        News oldNewsState = new News(existingNews.getAuthorId(), existingNews.getTitle(), existingNews.getBody(), existingNews.getMediaRefs(), existingNews.getPublishedAt(), existingNews.isDeleted(), existingNews.getCreatedAt(), existingNews.getUpdatedAt());
+        News oldNewsState = new News(existingNews.getAuthorId(), existingNews.getTitle(), existingNews.getBody(), existingNews.getMediaRefs(), existingNews.getVersion(), existingNews.getPublishedAt(), existingNews.isDeleted(), existingNews.getCreatedAt(), existingNews.getUpdatedAt());
 
         existingNews.setPublishedAt(null); // Set to null to unpublish
         existingNews.setUpdatedAt(LocalDateTime.now());
@@ -105,7 +106,7 @@ public class NewsService {
 
         News existingNews = optionalNews.get();
         // Using Lombok's @Builder or @Value would simplify this copy
-        News oldNewsState = new News(existingNews.getAuthorId(), existingNews.getTitle(), existingNews.getBody(), existingNews.getMediaRefs(), existingNews.getPublishedAt(), existingNews.isDeleted(), existingNews.getCreatedAt(), existingNews.getUpdatedAt());
+        News oldNewsState = new News(existingNews.getAuthorId(), existingNews.getTitle(), existingNews.getBody(), existingNews.getMediaRefs(), existingNews.getVersion(), existingNews.getPublishedAt(), existingNews.isDeleted(), existingNews.getCreatedAt(), existingNews.getUpdatedAt());
 
         existingNews.setDeleted(true);
         existingNews.setUpdatedAt(LocalDateTime.now());

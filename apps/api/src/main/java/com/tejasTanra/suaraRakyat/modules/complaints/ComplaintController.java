@@ -11,7 +11,7 @@ import com.tejasTanra.suaraRakyat.model.Complaint;
 import com.tejasTanra.suaraRakyat.model.ComplaintStatus;
 import com.tejasTanra.suaraRakyat.model.User; // Import User model
 import com.tejasTanra.suaraRakyat.service.ComplaintService;
-import com.tejasTanra.suaraRakyat.service.UserService; // Import UserService
+import com.tejasTanra.suaraRakyat.modules.users.UserService; // Import UserService
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page; // Import Page

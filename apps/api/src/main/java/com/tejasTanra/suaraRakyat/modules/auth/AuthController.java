@@ -5,7 +5,7 @@ import com.tejasTanra.suaraRakyat.dto.LoginRequest;
 import com.tejasTanra.suaraRakyat.dto.LoginResponse;
 import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
 import com.tejasTanra.suaraRakyat.model.User;
-import com.tejasTanra.suaraRakyat.service.UserService;
+import com.tejasTanra.suaraRakyat.modules.users.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

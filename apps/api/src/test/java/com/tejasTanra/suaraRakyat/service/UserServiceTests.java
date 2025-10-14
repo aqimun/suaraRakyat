@@ -1,4 +1,4 @@
-package com.tejasTanra.suaraRakyat.service;
+package com.tejasTanra.suaraRakyat.modules.users;
 
 import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
 import com.tejasTanra.suaraRakyat.exception.BadRequestException;
@@ -8,6 +8,8 @@ import com.tejasTanra.suaraRakyat.model.Role;
 import com.tejasTanra.suaraRakyat.model.User;
 import com.tejasTanra.suaraRakyat.model.UserStatus;
 import com.tejasTanra.suaraRakyat.repository.UserRepository;
+import com.tejasTanra.suaraRakyat.service.AuditLogService;
+import com.tejasTanra.suaraRakyat.service.RoleService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

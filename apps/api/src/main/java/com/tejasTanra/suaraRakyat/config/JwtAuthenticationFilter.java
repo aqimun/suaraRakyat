@@ -1,6 +1,6 @@
 package com.tejasTanra.suaraRakyat.config;
 
-import com.tejasTanra.suaraRakyat.service.UserService;
+import com.tejasTanra.suaraRakyat.modules.users.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

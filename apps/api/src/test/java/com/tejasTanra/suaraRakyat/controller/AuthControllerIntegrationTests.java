@@ -1,4 +1,4 @@
-package com.tejasTanra.suaraRakyat.controller;
+package com.tejasTanra.suaraRakyat.modules.auth;
 
 import com.tejasTanra.suaraRakyat.config.JwtTokenProvider;
 import com.tejasTanra.suaraRakyat.dto.LoginRequest;
@@ -7,7 +7,7 @@ import com.tejasTanra.suaraRakyat.dto.RegisterRequest;
 import com.tejasTanra.suaraRakyat.exception.ConflictException;
 import com.tejasTanra.suaraRakyat.model.User;
 import com.tejasTanra.suaraRakyat.model.UserStatus;
-import com.tejasTanra.suaraRakyat.service.UserService;
+import com.tejasTanra.suaraRakyat.modules.users.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
