@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../config.js';
-import Header from '../../components/Header.js';
-import Footer from '../../components/Footer.js';
+import Header from '../../components/Header.jsx';
+import Footer from '../../components/Footer.jsx';
 
 const SignUpPage = () => {
   const [step, setStep] = useState(1);
